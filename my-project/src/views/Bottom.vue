@@ -1,0 +1,5 @@
+<template>
+  <div class="bottom">
+    <h1>Bottom</h1>
+  </div>
+</template>
