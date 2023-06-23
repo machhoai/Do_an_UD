@@ -42,7 +42,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     /* css phần navbar */
     .navigation
     {
@@ -68,7 +68,6 @@
     }
     /* css phần navbar giữa */
     #navbar ul{
-        height: 70px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -93,6 +92,7 @@
     #button-reponsive{
         position: absolute;
         right: 10px;
+        top: 10px;
     }
 
 </style>

@@ -28,8 +28,9 @@
 
 <style>
     .Content-Home{
-        width: 100%;
-        height: auto;
+      width: 100%;
+      margin: 0px;
+      height: auto;
     }
 
     #carouselExampleControls

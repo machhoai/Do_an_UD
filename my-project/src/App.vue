@@ -3,14 +3,16 @@
   <div class="container">
     <router-view/>
   </div>
+  <Footer/>
 </template>
 
 
 <script>
   import Navigation from "@/components/TheNavigation.vue"
+  import Footer from "@/components/Footer.vue"
   export default {
     components:{
-      Navigation
+      Navigation,Footer
     }
   }
 </script>
@@ -22,7 +24,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  margin: 0;
 }
 
 .container
@@ -30,6 +32,7 @@
   position: relative;
   top: 90px;
   width: 100%;
-  margin: 0px;
 }
+
+
 </style>
