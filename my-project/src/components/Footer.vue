@@ -54,19 +54,18 @@
         position: relative;
         bottom: 0px;
         width: 100%;
-        height: 500px;
+        height:600px;
         background: black;
         margin-top: 200px;
         display: flex;
         padding: 0 10%;
-        align-items: center;
     }
 
     .contain-item{
         height: 400px;
         width: 20%;
         text-align: left;
-        margin: 0 10px;
+        margin: 20px 10px;
         padding: 0 10px;
     }
 
