@@ -58,11 +58,11 @@
         background: black;
         margin-top: 200px;
         display: flex;
-        padding: 0 10%;
+        padding: 0px 5%;
     }
 
     .contain-item{
-        height: 400px;
+        height: fit-content;
         width: 20%;
         text-align: left;
         margin: 20px 10px;
@@ -101,5 +101,23 @@
     }
     #icon li i{
         font-size: 18px;
+    }
+
+    /* css responsive */
+
+    @media screen and (max-width:800px){
+        .Footer{
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            padding: 15px;
+        }
+        .contain-item{
+            width: 100%;
+        }
+        .contain-item li img
+        {
+            width: 150px;
+        }
     }
 </style>

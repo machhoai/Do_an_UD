@@ -48,29 +48,28 @@
     {
         position: fixed;
         height: 70px;
-        width: 100%;
         z-index: 10;
+        width: 100%;
         background: gray;
     }
     #Logo-Warp{
         width: 15%;
-        min-width: 200px;
         padding: 20px 0px;
     }
     #Logo-Home{
         height: 30px;
-        width: 170px;
         margin-left: 10px;
     }
     #navbar{
         padding: 0px;
         background: gray;
     }
+
     /* css phần navbar giữa */
-    #navbar ul{
+    #navbarSupportedContent ul{
         display: flex;
-        align-items: center;
         justify-content: center;
+        margin: 0px 20px;
     }
     #navbarSupportedContent a{
         color: black;
