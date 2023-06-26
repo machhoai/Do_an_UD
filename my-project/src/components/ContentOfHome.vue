@@ -45,6 +45,7 @@
         </div>
         <!-- sale product-->
         <div class="sale-product">
+          <h1>NEW ARRIVALS</h1>
           <div id="item-sale" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
               <!-- 3 gach dấu hiệu quyển slide-->
@@ -58,7 +59,8 @@
               <div class="carousel-item active">
                   <div class="row flex-wrap">
                       <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Spray-Tshirt.jpeg" class=" w-100" alt="">
+
+                        <img src="../assets/Candles-Spray-Tshirt.jpeg" class=" w-100" alt="">                   
                       </div>
                       <div class="col-4 col-md-3 row-4">
                         <img src="../assets/Candles-The-Piece-Tshirt.jpeg" class=" w-100" alt="">
@@ -192,6 +194,15 @@
     </div>
 </template>
 
+<script>
+  import InforProduct from '@/components/InforProduct.vue'
+  export default {
+    components:{
+      InforProduct
+    }
+  }
+
+</script>
 
 <style>
 /* css phần introduce */
@@ -226,7 +237,11 @@
       opacity: 0.5;
     }
     /* css phần sale product trong phần product */
-
+        .sale-product h1
+        {
+          margin-top: 30px;
+          font-weight: 700;
+        }
       /* css phần nút chuyển slide */
         .sale-product .carousel-control-prev
         {
