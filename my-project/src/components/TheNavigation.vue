@@ -8,6 +8,22 @@
                 <router-link to="/" id="Logo-Warp">
                     <img src="../assets/BackHome.webp" alt="" id="Logo-Home">
                 </router-link>
+                <!-- user-login-sign up-giỏ hàng -->
+                <div class="ForUser">
+                    <li class="item">
+                        <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i>
+                    </li>
+                    <li class="item">
+                        <router-link to="/login">
+                            login
+                        </router-link>
+                    </li>
+                    <li class="item">
+                        <router-link to="/signup">
+                            Sign Up
+                        </router-link>
+                    </li>
+                </div>
                 <button id="button-reponsive" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon" ></span>
                 </button>
@@ -37,6 +53,7 @@
                         </li>           
                     </ul>       
                 </div>
+                
             </div>
         </nav>
     </div>
@@ -92,6 +109,36 @@
         position: absolute;
         right: 10px;
         top: 10px;
+    }
+
+    /* css for user (login sign,...) */
+    .ForUser
+    {
+        display: flex;
+        list-style: none;
+        position: absolute;
+        right: 20px;
+        top: 35px;
+        transform: translateY(-50%);
+    }
+
+    .ForUser li
+    {
+        margin: 0 5px;
+    }
+    .ForUser li a
+    {
+        text-decoration: none;
+        color: black;
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    @media screen and (max-width: 991px) {
+        .ForUser
+        {
+            margin-right: 50px ;
+        }
     }
 
 </style>
