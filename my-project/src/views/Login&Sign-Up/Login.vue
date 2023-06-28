@@ -3,21 +3,29 @@
         <div class=" col-10 col-lg-8" id="Container" >
             <h1>login</h1>
             <form action="" method="post" class="col-lg-6 col-10">
-                <label for="UserName" >
+                <label for="UserName"  >
                     <i class="fa-solid fa-user"></i>
-                    <p id="User" :class="{'active':userActive}">User name</p>
-                    <input type="text" name="User-Name" @focus="UserActive" id="UserName"  v-model="value1" >
+                    <p class="User " :class="{'User-active': isActiveUser}">User name</p>
+
+                    <input type="text" name="User-Name" id="UserName" 
+                        v-model="user"                       
+                        @input="TextChange()">
                 </label>
                 <label for="Password" >
                     <i class="fa-solid fa-lock"></i>
-                    <p id="Pass">Password</p>
-                    <input type="showPassword" name="Password" id="Password" v-model="value2">
-                    <div id="Show-Password" @click="HandleClick">
-                        <i class="fa-solid fa-eye-slash" id="eye-slash"></i>
-                        <i class="fa-solid fa-eye" id="eye"></i>
+                    <p class="Pass" :class="{'Pass-active': isActivePass}">Password</p>
+                    
+                    <input :type="typeInput"  name="Password" id="Password" 
+                        v-model="password"
+                        @input="TextChange()">
+
+                    <!-- phần show password-->
+                    <div id="Show-Password" @click="ShowPassword">
+                        <i v-show="iconPass" class="fa-solid fa-eye-slash" id="eye-slash"></i>
+                        <i v-show="iconText" class="fa-solid fa-eye" id="eye"></i>
                     </div>
-                </label>
-                <div id="Remember-Forgot" class="col-10">
+               </label>
+                <div id="Remember-Forgot">
                     <label for="Check-Remember">
                         <input type="checkbox" name="check-remember" >
                         Remember me
@@ -35,20 +43,40 @@
 export default {
     data() {
         return {
-            value1:"",
-            value2:"",
-            userActive: false,
-            passActive: false
+            typeInput: "password",
+            iconPass: true,
+            iconText: false,
+            user: '',
+            password :'',
+            isActiveUser: false,
+            isActivePass: false
         }
     },
     methods:{
-        UserActive(){
-            if(this.value1.trim() !== '')
+        ShowPassword(){
+            this.typeInput = this.typeInput === "password" ? "text" : "password";
+            this.iconPass = !this.iconPass;
+            this.iconText = !this.iconText
+        },
+        TextChange(){
+            if(this.user !="")
             {
-                this.userActive = true;
+                this.isActiveUser = true;
             }
-            console.value1;
-        }
+            else
+            {
+                this.isActiveUser = false;
+            }
+            if(this.password != "")
+            {
+                this.isActivePass = true;
+            }
+            else
+            {
+                this.isActivePass = false;
+            }
+
+        },
     }
 }
 
@@ -58,11 +86,14 @@ export default {
 <style>
     .Background
     {
-        height: 100%;
+        height: 600px;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        background: url(../../assets/login.webp);
+        background-size: 100%;
+        border-radius: 30px;
     }
     .Background #Container
     {
@@ -72,6 +103,7 @@ export default {
         align-items: center;
         border-radius: 0px 0px 30px 30px;
         font-size: 16px;
+        padding: 50px 0;
     }
     .Background #Container form
     {
@@ -102,7 +134,6 @@ export default {
     .Background #Container form label #Show-Password .fa-eye
     {
         position: absolute;
-        display: none;
     }
     .Background #Container form label input
     {
@@ -152,34 +183,34 @@ export default {
         width: 18px;
         cursor: pointer;
     }
-    .Background #Container form label #User
+    .Background #Container form label .User
     {
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 40px;
-        margin: 0px;
-        font-size: 17px;   
-    }
-    .Background #Container form label #User.active
-    {
-        top: -13px;
-        font-weight: 600;
-        font-size: 18px;
-    }
-
-    .Background #Container form label #Pass
-    {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        top: 10%;
         left: 40px;
         margin: 0px;
         font-size: 17px;
+        transition: 0.2s; 
     }
-        .Background #Container form label #Pass.active1
+    /* thành phần active của user */
+    .User-active
     {
-        top: -13px;
+        transform: translateY(-25px);
+        font-weight: 600;
+        font-size: 18px;
+    }
+    .Background #Container form label .Pass
+    {
+        position: absolute;
+        top: 10%;
+        left: 40px;
+        margin: 0px;
+        font-size: 17px;
+        transition: 0.2s; 
+    }
+    .Pass-active
+    {
+        transform: translateY(-25px);
         font-weight: 600;
         font-size: 18px;
     }
