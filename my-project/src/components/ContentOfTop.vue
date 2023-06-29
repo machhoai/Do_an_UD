@@ -21,7 +21,7 @@
     </main>
 </template>
 
-<style>
+<style scoped>
 main
 {
     width: 100%;
@@ -34,7 +34,7 @@ main
 .container
 {
     width:70%;
-    background-color: aqua;
+    background: aqua;
 }
 
 .header

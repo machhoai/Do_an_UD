@@ -5,9 +5,9 @@
             <form action="" method="post" class="col-lg-6 col-10">
                 <label for="UserName"  >
                     <i class="fa-solid fa-user"></i>
-                    <p class="User " :class="{'User-active': isActiveUser}">User name</p>
+                    <p class="User " :class="{'User-active': isActiveUser}">Email</p>
 
-                    <input type="text" name="User-Name" id="UserName" 
+                    <input type="email" name="User-Name" id="UserName" 
                         v-model="user"                       
                         @input="TextChange()">
                 </label>
@@ -39,14 +39,14 @@
 </template>
 
 
-<script>
+<script scoped>
 export default {
     data() {
         return {
             typeInput: "password",
             iconPass: true,
             iconText: false,
-            user: '',
+            email: '',
             password :'',
             isActiveUser: false,
             isActivePass: false
@@ -83,7 +83,7 @@ export default {
 // một số hàm trong
 </script>
 
-<style>
+<style scoped>
     .Background
     {
         height: 600px;
