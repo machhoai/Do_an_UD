@@ -57,45 +57,11 @@
             <div class="carousel-inner">
               <!-- slide 1 -->
               <div class="carousel-item active">
-                  <div class="row flex-wrap">
-                      <div class="col-4 col-md-3">
-                        <router-link to="/product">
-                          <img src="../assets/Candles-Spray-Tshirt.jpeg" class=" w-100" alt="">
-                        </router-link>
-                                           
-                      </div>
-                      <div class="col-4 col-md-3 row-4" >
-                        <img src="../assets/Candles-The-Piece-Tshirt.jpeg" @click="GoToProduct('../assets/Candles-The-Piece-Tshirt.jpeg')" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Hidden-Tshirt.jpeg" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Gamble-Tshirt.jpeg" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Spray-blue-Tshirt.jpeg" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Hidden-brown-Tshirt.jpeg" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Hidden-black-Tshirt.jpeg" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Title-Tshirt.jpeg" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Spray-white-milk-Tshirt.jpeg" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Hidden-dark-brown-Tshirt.jpeg" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-Title-white-Tshirt.jpeg" class=" w-100" alt="">
-                      </div>
-                      <div class="col-4 col-md-3">
-                        <img src="../assets/Candles-BW-Car-Tshirt.jpeg" class=" w-100" alt="">
+                  <div class="row flex-wrap" >
+                      <div class="col-4 col-md-3" v-for="image in images" :key="image.id"> 
+                        <router-link to="{path :'/product', query: {imageId : image.id}}">
+                          <img :src="require('@/assets/' + image.url)" class=" w-100" alt="">
+                        </router-link>                                          
                       </div>
                   </div>
               </div>
@@ -197,14 +163,21 @@
 </template>
 
 <script>
+import Imnages from '@/images.json'
   export default {
     name:'Home',
-    methods: {
-      GoToProduct(data){
-        const imgUrl = data;
-        this.$route.push({path:'/product', query:{ image : '../assets/Candles-Blunt-Skin-Color-Tshirt.jpeg'} });
+    data() {
+      return {
+        images: []
       }
     },
+    mounted(){
+      fetch(Imnages)
+        .then((image) => image.json())
+        .then((data) => {
+          this.images = data;
+        })
+    }
   }
 
 </script>

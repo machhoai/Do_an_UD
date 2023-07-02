@@ -75,7 +75,8 @@ const routes = [
   {
     path: '/product',
     name: 'ProductInformation',
-    component: () => import(/* webpackChunkName: "product" */ '../views/DisplayProductInformation.vue')
+    component: () => import(/* webpackChunkName: "product" */ '../views/DisplayProductInformation.vue'),
+    props: (route) => ({imageId: router.query.imageId}),
   }
 ]
 
