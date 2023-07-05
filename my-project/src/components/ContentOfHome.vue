@@ -46,7 +46,7 @@
         <!-- sale product-->
         <div class="sale-product">
           <h1>NEW ARRIVALS</h1>
-          <div id="item-sale" class="carousel carousel-dark slide" data-bs-ride="carousel">
+          <div id="item-sale" class="carousel carousel-dark slide  autoplayspeed=(5000)" data-bs-ride="carousel">
             <div class="carousel-indicators">
               <!-- 3 gach dấu hiệu quyển slide-->
               <button type="button" data-bs-target="#item-sale" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -58,92 +58,233 @@
               <!-- slide 1 -->
               <div class="carousel-item active">
                   <div class="row flex-wrap" >
-                      <div class="col-4 col-md-3" v-for="image in images" :key="image.id"> 
-                        <router-link to="{path :'/product', query: {imageId : image.id}}">
-                          <img :src="require('@/assets/' + image.url)" class=" w-100" alt="">
-                        </router-link>                                          
-                      </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                        <img src="../assets/Candles-Bolt-Polo-black.jpeg" class=" w-100" alt="">
+                        <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span>           
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                        <img src="../assets/Candles-Hidden-Sweat-Short.jpeg" class=" w-100" alt=""> 
+                        <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span>             
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                        <img src="../assets/Candles-Striped-CollarPolo.jpeg" class=" w-100" alt="">
+                        <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span>            
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                        <img src="../assets/Candles-Colorblock-Short.jpeg" class=" w-100" alt="">
+                        <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span>         
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                        <img src="../assets/Candles-Single-Knee-Short.jpeg" class=" w-100" alt="">  
+                        <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span>                     
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                        <img src="../assets/Candles-Hidden-Sweat-green-Short.jpeg" class=" w-100" alt="">
+                        <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span> 
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">                   
+                      <img src="../assets/Candles-Striped-CollarPolo-gray.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span> 
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                      <img src="../assets/Candles-Blunt-Tshirt.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span> 
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                      <img src="../assets/Candles-Single-Knee-jean-Short.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span> 
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                      <img src="../assets/Candles-Hidden-Sweat-brown-Short.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span> 
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                      <img src="../assets/Candles-Striped-CollarPolo-Milk-White.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span> 
+                    </div>
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
+                      <img src="../assets/Candles-Blunt-Skin-Color-Tshirt.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                        <span>410.000đ</span> 
+                    </div>
+
                   </div>
               </div>
               <!-- slide 2 -->
               <div class="carousel-item">
                   <div class="row flex-wrap">
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Shaded-Tshirt.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-TPNE-Polo.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Land-Shirt.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Denim-Knee-Blow-out.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Shaded-opalescent-Tshirt.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-TPNE-Red-logo-Polo.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Denim-Knee-Blow-out-white.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Bolt-Polo.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Shaded-dark-gray-Tshirt.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Land-yellow-Shirt.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Denim-Knee-Blow-out-dark.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
-                    <div class="col-4 col-md-3">
+
+                    <div class="col-4 col-md-3" @click="GoProductPage()">
                       <img src="../assets/Candles-Bolt-Polo-dark-blue.jpeg" class=" w-100" alt="">
+                      <h1>Candles Shaded Tshirt</h1>
+                      <span>410.000đ</span> 
                     </div>
+
                   </div>
               </div>
               <!-- slide 3 -->
               <div class="carousel-item">
                 <div class="row flex-wrap">
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Bolt-Polo-black.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Hidden-Sweat-Short.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Striped-CollarPolo.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Colorblock-Short.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Single-Knee-Short.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Hidden-Sweat-green-Short.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Striped-CollarPolo-gray.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Blunt-Tshirt.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Single-Knee-jean-Short.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Hidden-Sweat-brown-Short.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Striped-CollarPolo-Milk-White.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
-                  <div class="col-4 col-md-3">
+
+                  <div class="col-4 col-md-3" @click="GoProductPage()">
                     <img src="../assets/Candles-Blunt-Skin-Color-Tshirt.jpeg" class=" w-100" alt="">
+                    <h1>Candles Shaded Tshirt</h1>
+                    <span>410.000đ</span> 
                   </div>
                 </div>
               </div>
@@ -163,21 +304,20 @@
 </template>
 
 <script>
-import Imnages from '@/images.json'
+import Images from '@/images.json'
   export default {
     name:'Home',
     data() {
       return {
-        images: []
+        
       }
     },
-    mounted(){
-      fetch(Imnages)
-        .then((image) => image.json())
-        .then((data) => {
-          this.images = data;
-        })
+    methods:{
+      GoProductPage(){
+        this.$router.push({path: '/product'})
+      }
     }
+    
   }
 
 </script>
@@ -228,4 +368,28 @@ import Imnages from '@/images.json'
         .sale-product .carousel-control-next{
           transform: translateX(55%);
         }
+    /* css phần slide sản phẩm*/
+    .carousel-item .row
+    {
+      min-height: 780px;
+      cursor: pointer;
+    }
+    .carousel-item .row h1
+    {
+      font-size: 19px;
+      margin: 5px 0;
+      font-weight: 400;
+    }
+    .carousel-item .row span
+    {
+      color: red;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* dấu chuyển slide */
+    .carousel-indicators 
+    {
+      transform: translateY(40px);
+    }
 </style>

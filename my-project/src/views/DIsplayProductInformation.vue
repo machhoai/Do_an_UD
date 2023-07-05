@@ -8,7 +8,7 @@
                         OFF
                     </span>
                 </div>
-                <img :src="{imgUrl}" class="w-100" alt="">
+                <img src="../assets/Candles-Bolt-Polo-black.jpeg" class="w-100" alt="">
             </div>
         </div>
         <div class="Infor-Product col-10 col-md-6">
@@ -35,7 +35,13 @@
                 <p>+ Nên treo sản phẩm để sản phẩm có độ bền phom dáng.</p>
             </div>
             <div class="Size">
-
+                <h1>Size</h1>
+                <div class="chooseSize">
+                    <input type="button" value="S" @click="ChooseSize(1)" :class="{'input-active':SizeActive === 1}">
+                    <input type="button" value="M" @click="ChooseSize(2)" :class="{'input-active':SizeActive === 2}">
+                    <input type="button" value="L" @click="ChooseSize(3)" :class="{'input-active':SizeActive === 3}">
+                    <input type="button" value="XL" @click="ChooseSize(4)" :class="{'input-active':SizeActive === 4}">
+                </div>
             </div>
         </div>
     </div>
@@ -46,13 +52,15 @@ export default {
     name: 'ProductIformation',
     data() {
         return {
-            imgUrl:''
+            SizeActive: null,
         }
 
     },
-    created() {
-        this.imgUrl = this.$route.query.image;
-    },
+    methods:{
+        ChooseSize(data){
+            this.SizeActive = data;
+        }
+    }
 }
 </script>
 
@@ -148,5 +156,32 @@ export default {
     {
         color: white;
         font-weight: 600;
+    }
+
+    /* css phaanf size */
+    .Size
+    {
+        margin: 20px 0;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+    .Size h1
+    {
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .Size input
+    {
+        margin: 0 5px;
+        font-weight: 700;
+        width: 40px;
+        text-align: center;
+    }
+    .input-active 
+    {
+        background: black;
+        color: white;
     }
 </style>

@@ -75,15 +75,14 @@ const routes = [
   {
     path: '/product',
     name: 'ProductInformation',
-    component: () => import(/* webpackChunkName: "product" */ '../views/DisplayProductInformation.vue'),
-    props: (route) => ({imageId: router.query.imageId}),
+    component: () => import(/* webpackChunkName: "product" */ '../views/DisplayProductInformation.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  linkActiveClass: 'Active-link'
+  linkActiveClass: 'Active-link',
 })
 
 export default router
