@@ -42,6 +42,13 @@
                     <input type="button" value="L" @click="ChooseSize(3)" :class="{'input-active':SizeActive === 3}">
                     <input type="button" value="XL" @click="ChooseSize(4)" :class="{'input-active':SizeActive === 4}">
                 </div>
+                <div class="quantity">
+                    <p>Số Lượng</p>
+                    <button class="minus" @click="EnterQuantity('-')">-</button>
+                    <input type="number" v-model="number" name="Enter-Quantity" min="1">
+                    <button class="plus" @click="EnterQuantity('+')">+</button>
+                </div>
+                <button class="AddToCart" @click="Added()">Add To Cart</button>
             </div>
         </div>
     </div>
@@ -53,13 +60,30 @@ export default {
     data() {
         return {
             SizeActive: null,
+            number: 1,
+            Selection:''
         }
 
     },
     methods:{
         ChooseSize(data){
             this.SizeActive = data;
-        }
+        },
+        EnterQuantity(data){
+            this.Selection = data;
+            if(this.Selection === '+')
+            {
+                this.number += 1;
+            }
+            else if(this.Selection === '-' && this.number > 1)
+            {
+                this.number --;
+            }
+            
+        },
+        Added(){
+                alert('Đã add vào cart');
+            }
     }
 }
 </script>
@@ -183,5 +207,44 @@ export default {
     {
         background: black;
         color: white;
+    }
+    /* css cho quantity */
+    .quantity
+    {
+        display: flex;
+        margin: 20px 0; 
+    }
+    .quantity p
+    {
+        font-size: 15px;
+        margin-right: 50px;
+    }
+    .quantity button
+    {
+        margin: 0;
+        width: 30px;
+        border: 1px solid black;
+        height: 30px;
+        font-size: 18px;
+        font-weight: 600;
+        background: white;
+    }
+    .quantity input
+    {
+        margin: 0;
+        font-weight: 400;
+    }
+
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button {
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* css AddToCart */
+    .AddToCart
+    {
+        background: black;
+        color: white;
+        cursor: pointer;
     }
 </style>

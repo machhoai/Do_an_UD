@@ -315,7 +315,7 @@ import Images from '@/images.json'
     methods:{
       GoProductPage(){
         this.$router.push({path: '/product'})
-      }
+      },
     }
     
   }
@@ -379,12 +379,15 @@ import Images from '@/images.json'
       font-size: 19px;
       margin: 5px 0;
       font-weight: 400;
+      text-align: center;
     }
     .carousel-item .row span
     {
       color: red;
       font-size: 18px;
       font-weight: 600;
+      display: flex;
+      justify-content: center;
     }
 
     /* dấu chuyển slide */
