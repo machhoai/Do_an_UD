@@ -48,7 +48,7 @@
 
 
 
-<style>
+<style scoped>
     /* css phần footer*/
     .Footer{
         position: relative;

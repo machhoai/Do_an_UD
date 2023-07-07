@@ -204,7 +204,7 @@
 
 </script>
 
-<style>
+<style scoped>
 /* css phần introduce */
     .Content-introduce-Home{
       width: 100%;
