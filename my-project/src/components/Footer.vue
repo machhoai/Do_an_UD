@@ -58,7 +58,7 @@
         background: black;
         margin-top: 100px;
         display: flex;
-        padding: 0px 5%;
+        padding: 40px 5%;
     }
 
     .contain-item{

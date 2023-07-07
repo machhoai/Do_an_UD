@@ -251,7 +251,6 @@ h1::after
     top: 22px;
     right: 0px;
 }
-
 .header
 {
     height: 50px;

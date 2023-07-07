@@ -11,7 +11,9 @@
                 <!-- user-login-sign up-giỏ hàng -->
                 <div class="ForUser">
                     <li class="item">
-                        <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i>
+                        <router-link to="/bag">
+                            <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i>
+                        </router-link>     
                     </li>
                     <li class="item">
                         <router-link to="/login">

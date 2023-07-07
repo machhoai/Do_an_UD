@@ -71,13 +71,23 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login&Sign-Up/Login.vue')
+  },
+  {
+    path: '/product',
+    name: 'ProductInformation',
+    component: () => import(/* webpackChunkName: "product" */ '../views/DisplayProductInformation.vue')
+  },
+  {
+    path: '/bag',
+    name: 'Bag',
+    component: () => import(/* webpackChunkName: "bag" */ '../views/Bag.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  linkActiveClass: 'Active-link'
+  linkActiveClass: 'Active-link',
 })
 
 export default router
