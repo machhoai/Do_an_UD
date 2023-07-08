@@ -1,14 +1,10 @@
 <template>
     <div class="container">
-       <a href="#"><h1>TOP</h1></a>
+       <a href="#"><h1>Accessories</h1></a>
         <nav class="header">
             <ul>
-                <li>Polo</li>
-                <li>T-Shirt</li>
-                <li>Shirt</li>
-                <li>Hoodies</li>
-                <li>Sweaters</li>
-                <li>Longsleeves</li>
+                <li>Bags</li>
+                <li>Caps</li>
             </ul>
         </nav>
         <div class="products">
@@ -22,8 +18,8 @@
                     </div>
                     <h3 id="product-name">Candle Holiday T-shirt</h3>
                     <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
+                        <span id="curr-price">419,000<u>đ</u></span>
+                        <span id="old-price"><s>549,000<u>đ</u></s></span>
                     </div>
                 </div>
             </div>
@@ -37,8 +33,8 @@
                     </div>
                     <h3 id="product-name">Candle Holiday T-shirt</h3>
                     <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
+                        <span id="curr-price">379,000<u>đ</u></span>
+                        <span id="old-price"><s>499,000<u>đ</u></s></span>
                     </div>
                 </div>
             </div>
@@ -52,8 +48,8 @@
                     </div>
                     <h3 id="product-name">Candle Holiday T-shirt</h3>
                     <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
+                        <span id="curr-price">419,000<u>đ</u></span>
+                        <!-- <span id="old-price"><s><u></u></s></span> -->
                     </div>
                 </div>
             </div>
@@ -67,8 +63,8 @@
                     </div>
                     <h3 id="product-name">Candle Holiday T-shirt</h3>
                     <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
+                        <span id="curr-price">479,000<u>đ</u></span>
+                        <span id="old-price"><s>519,000<u>đ</u></s></span>
                     </div>
                 </div>
             </div>
@@ -235,7 +231,7 @@ h1::before
     content: '';
     display: block;
     height: 1px;
-    width: 46.5%;
+    width: 39.5%;
     background-color: black;
     position: absolute;
     top: 26px;
@@ -246,7 +242,7 @@ h1::after
     content: '';
     display: block;
     height: 1px;
-    width: 46.5%;
+    width: 39.5%;
     background-color: black;
     position: absolute;
     top: 26px;

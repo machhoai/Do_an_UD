@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-       <a href="#"><h1>TOP</h1></a>
+       <a href="#"><h1>sale</h1></a>
         <nav class="header">
             <ul>
                 <li>Polo</li>
@@ -235,7 +235,7 @@ h1::before
     content: '';
     display: block;
     height: 1px;
-    width: 46.5%;
+    width: 45.5%;
     background-color: black;
     position: absolute;
     top: 26px;
@@ -246,7 +246,7 @@ h1::after
     content: '';
     display: block;
     height: 1px;
-    width: 46.5%;
+    width: 45.5%;
     background-color: black;
     position: absolute;
     top: 26px;
