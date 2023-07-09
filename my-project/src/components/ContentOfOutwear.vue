@@ -1,14 +1,9 @@
 <template>
     <div class="container">
-       <a href="#"><h1>TOP</h1></a>
+       <a href="#"><h1>Outwear</h1></a>
         <nav class="header">
             <ul>
-                <li>Polo</li>
-                <li>T-Shirt</li>
-                <li>Shirt</li>
-                <li>Hoodies</li>
-                <li>Sweaters</li>
-                <li>Longsleeves</li>
+                <li>Jackets</li>
             </ul>
         </nav>
         <div class="products">
@@ -235,7 +230,7 @@ h1::before
     content: '';
     display: block;
     height: 1px;
-    width: 46.5%;
+    width: 41.5%;
     background-color: black;
     position: absolute;
     top: 26px;
@@ -246,7 +241,7 @@ h1::after
     content: '';
     display: block;
     height: 1px;
-    width: 46.5%;
+    width: 41.5%;
     background-color: black;
     position: absolute;
     top: 26px;
