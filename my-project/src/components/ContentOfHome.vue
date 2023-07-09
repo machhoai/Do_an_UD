@@ -25,8 +25,8 @@
         </div>
     </div>
     <!--product-->
-    <div class="product">
-        <div class="intro-product">
+    <div class="product" >
+        <div class="intro-product col-11">
             <div class="product-item col-4">
               <router-link to="/top">
                 <img src="../assets/go-top.jpeg" alt="">
@@ -44,9 +44,9 @@
             </div>
         </div>
         <!-- sale product-->
-        <div class="sale-product">
+        <div class="sale-product col-10">
           <h1>NEW ARRIVALS</h1>
-          <div id="item-sale" class="carousel carousel-dark slide  autoplayspeed=(5000)" data-bs-ride="carousel">
+          <div id="item-sale" class="carousel carousel-dark slide " data-bs-ride="carousel">
             <div class="carousel-indicators">
               <!-- 3 gach dấu hiệu quyển slide-->
               <button type="button" data-bs-target="#item-sale" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -304,7 +304,6 @@
 </template>
 
 <script>
-import Images from '@/images.json'
   export default {
     name:'Home',
     data() {
@@ -314,8 +313,8 @@ import Images from '@/images.json'
     },
     methods:{
       GoProductPage(){
-        this.$router.push({path: '/product'})
-      },
+        this.$router.push({path:'/product'})
+      }
     }
     
   }
@@ -326,10 +325,7 @@ import Images from '@/images.json'
 /* css phần introduce */
     .Content-introduce-Home{
       width: 100%;
-      margin: 0px;
-      height: auto;
-      border-radius: 10px;
-      overflow: hidden;
+      padding: 0 0px;
     }
 
     .Content-introduce-Home #carouselExampleControls
@@ -340,7 +336,11 @@ import Images from '@/images.json'
   /* css phần product */
     .product{
       width: 100%;
-      padding: 20px;
+      padding: 20px 0;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
     .product .intro-product
     {
