@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-       <a href="#"><h1>Outwear</h1></a>
+       <div class="title"><a href="#"><h1><span>Outwear</span></h1></a></div>
         <nav class="header">
             <ul>
                 <li>Jackets</li>
@@ -201,12 +201,7 @@
     display: block;
     width: 100%;
     padding-bottom: 50px;
-}
-
-#top
-{
-    height: 10px;
-    width: 20px;
+    border-top: 1px solid black;
 }
 
 a
@@ -219,34 +214,25 @@ h1
 {
     text-transform: uppercase;
     position: relative;
-    top: -25px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bolder ;
     position: relative;
 }
-
-h1::before
+.title
 {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 41.5%;
-    background-color: black;
-    position: absolute;
-    top: 26px;
+    position: relative;
+    top: -25px;
+    max-width: 100%;
 }
 
-h1::after
+.title span
 {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 41.5%;
-    background-color: black;
-    position: absolute;
-    top: 26px;
-    right: 0px;
+    background: white;
+    height: 100%;
+    width: 50px;
+    padding: 10px;
 }
+
 .header
 {
     height: 50px;
@@ -343,5 +329,35 @@ h1::after
 {
     font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media(max-width:900px) {
+    .products
+    {
+        height: auto ;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        position: relative;
+        top: -20px;
+    }
+    .aproduct
+    {
+        min-width: 48%;
+    }
+    .box-price #curr-price
+    {
+        color: red;
+        font-weight: 700;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 15px;
+    }
+    .box-price #old-price
+    {
+        color: rgb(0, 0, 0);
+        font-weight: 700;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 15px;
+    }
 }
 </style>
