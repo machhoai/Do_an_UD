@@ -1,5 +1,5 @@
 <template>
-    <div class="Background">
+    <div class="Background col-10">
         <div class=" col-10 col-lg-8" id="Container" >
             <h1>login</h1>
             <form action="" method="post" class="col-lg-6 col-10">
@@ -86,14 +86,18 @@ export default {
 <style scoped>
     .Background
     {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 20px ;
         height: 600px;
-        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         background: url(../../assets/login.webp);
         background-size: 100%;
         border-radius: 30px;
+        box-shadow: 0px 10px 13px 8px rgb(56, 55, 55);
     }
     .Background #Container
     {

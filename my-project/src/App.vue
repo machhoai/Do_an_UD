@@ -1,8 +1,9 @@
 <template>
   <Navigation/>
-  <div class="container">
+  <section class="content">
     <router-view/>
-  </div>
+  </section>
+    
   <Footer/>
 </template>
 
@@ -27,10 +28,10 @@
   margin: 0;
 }
 
-.container
+.content
 {
   position: relative;
-  top: 90px;
+  top: 70px;
   width: 100%;
 }
 

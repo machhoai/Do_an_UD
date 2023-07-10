@@ -84,6 +84,11 @@
         background: gray;
     }
 
+    .nav-item
+    {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+    }
     /* css phần navbar giữa */
     #navbarSupportedContent ul{
         display: flex;
@@ -102,10 +107,10 @@
     }
     #navbarSupportedContent a.Active-link:hover
     {
-        border-bottom: 2px solid rgb(14, 166, 70);
+        border-bottom: 2px solid rgb(255, 255, 255);
     }
     #navbarSupportedContent a.Active-link{
-        color: rgb(14, 166, 70);
+        color: rgb(255, 255, 255);
     }
     #button-reponsive{
         position: absolute;
@@ -137,10 +142,10 @@
     }
 
     .ForUser li a:hover{
-        color: rgb(14, 166, 70); ;
+        color:white ;
     }
     .ForUser li a.Active-link{
-        color: rgb(14, 166, 70);
+        color:white;
     }
     @media screen and (max-width: 991px) {
         .ForUser

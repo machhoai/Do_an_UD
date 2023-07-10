@@ -1,14 +1,9 @@
 <template>
     <div class="container">
-        <div class="title"><a href="#"><h1><span>TOP</span></h1></a></div>
+       <a href="#"><h1>Outwear</h1></a>
         <nav class="header">
             <ul>
-                <li>Polo</li>
-                <li>T-Shirt</li>
-                <li>Shirt</li>
-                <li>Hoodies</li>
-                <li>Sweaters</li>
-                <li>Longsleeves</li>
+                <li>Jackets</li>
             </ul>
         </nav>
         <div class="products">
@@ -206,7 +201,12 @@
     display: block;
     width: 100%;
     padding-bottom: 50px;
-    border-top: 1px solid black;
+}
+
+#top
+{
+    height: 10px;
+    width: 20px;
 }
 
 a
@@ -219,46 +219,34 @@ h1
 {
     text-transform: uppercase;
     position: relative;
+    top: -25px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bolder ;
     position: relative;
 }
-.title
+
+h1::before
 {
-<<<<<<< HEAD
-    position: relative;
-    top: -25px;
-    max-width: 100%;
-=======
     content: '';
     display: block;
     height: 1px;
-    width: 46.5%;
+    width: 41.5%;
     background-color: black;
     position: absolute;
     top: 26px;
->>>>>>> refs/remotes/origin/main
 }
 
-.title span
+h1::after
 {
-<<<<<<< HEAD
-    background: white;
-    height: 100%;
-    width: 50px;
-    padding: 10px;
-=======
     content: '';
     display: block;
     height: 1px;
-    width: 46.5%;
+    width: 41.5%;
     background-color: black;
     position: absolute;
     top: 26px;
     right: 0px;
->>>>>>> refs/remotes/origin/main
 }
-
 .header
 {
     height: 50px;
@@ -355,35 +343,5 @@ h1
 {
     font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-@media(max-width:900px) {
-    .products
-    {
-        height: auto ;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        position: relative;
-        top: -20px;
-    }
-    .aproduct
-    {
-        min-width: 48%;
-    }
-    .box-price #curr-price
-    {
-        color: red;
-        font-weight: 700;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 15px;
-    }
-    .box-price #old-price
-    {
-        color: rgb(0, 0, 0);
-        font-weight: 700;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 15px;
-    }
 }
 </style>
