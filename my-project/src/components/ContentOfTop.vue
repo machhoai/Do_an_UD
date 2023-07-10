@@ -225,38 +225,17 @@ h1
 }
 .title
 {
-<<<<<<< HEAD
     position: relative;
     top: -25px;
     max-width: 100%;
-=======
-    content: '';
-    display: block;
-    height: 1px;
-    width: 46.5%;
-    background-color: black;
-    position: absolute;
-    top: 26px;
->>>>>>> refs/remotes/origin/main
 }
 
 .title span
 {
-<<<<<<< HEAD
     background: white;
     height: 100%;
     width: 50px;
     padding: 10px;
-=======
-    content: '';
-    display: block;
-    height: 1px;
-    width: 46.5%;
-    background-color: black;
-    position: absolute;
-    top: 26px;
-    right: 0px;
->>>>>>> refs/remotes/origin/main
 }
 
 .header
