@@ -101,7 +101,7 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        border-radius: 0px 0px 30px 30px;
+        border-radius: 30px 30px 30px 30px;
         font-size: 16px;
         padding: 50px 0;
     }

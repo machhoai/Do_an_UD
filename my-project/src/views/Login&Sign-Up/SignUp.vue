@@ -158,7 +158,7 @@ export default {
         flex-direction: column;
         align-items: center;
         background:rgba(225, 225, 225, 0.5) ;
-        border-radius: 0 0 30px 30px;
+        border-radius: 30px 30px 30px 30px;
         padding: 50px 0;
     }
     .Background #Container form
