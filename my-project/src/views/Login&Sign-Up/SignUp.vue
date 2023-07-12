@@ -1,5 +1,5 @@
 <template>
-    <div class="Background">
+    <div class="Background col-10">
         <div class=" col-lg-8 col-10 " id="Container">
             <h1>SIGN UP</h1>
             <form action="" method="post" class="col-10 col-lg-8 ">
@@ -144,21 +144,25 @@ export default {
 <style scoped>
     .Background
     {
-        width: 100%;
-        height: 750px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 20px ;
+        height: 700px;
         display: flex;
         justify-content: center;
         align-items: center;
         background: url(../../assets/login.webp);
         background-size: 100%;
         border-radius: 30px;
+        box-shadow: 0px 10px 13px 8px rgb(56, 55, 55);
     }
     .Background #Container{
         display: flex;
         flex-direction: column;
         align-items: center;
         background:rgba(225, 225, 225, 0.5) ;
-        border-radius: 0 0 30px 30px;
+        border-radius: 30px 30px 30px 30px;
         padding: 50px 0;
     }
     .Background #Container form
