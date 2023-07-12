@@ -254,12 +254,15 @@ h1::after
     display: flex;
     justify-content: center;
     position: relative;
+    align-items: center;
     top: -20px;
 }
 
 .header ul
 {
-    display: inline-flex
+    display: inline-flex;
+    justify-content: center;
+    
 }
 
 .header ul li
