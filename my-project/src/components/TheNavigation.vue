@@ -82,6 +82,7 @@
     #navbar{
         padding: 0px;
         background: gray;
+        height: 100%;
     }
 
     .nav-item
@@ -89,7 +90,18 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: bold;
     }
+
     /* css phần navbar giữa */
+    .navbar-collapse
+    {
+        height:100%
+    }
+
+    .navbar-nav
+    {
+        height: 100%;
+    }
+
     #navbarSupportedContent ul{
         display: flex;
         justify-content: center;
@@ -101,14 +113,9 @@
         text-decoration: none;
         font-size: 18px ;
         text-transform: uppercase;
+        position: relative;
     }
-    #navbarSupportedContent a:hover{
-        border-bottom: 2px solid black;
-    }
-    #navbarSupportedContent a.Active-link:hover
-    {
-        border-bottom: 2px solid rgb(255, 255, 255);
-    }
+
     #navbarSupportedContent a.Active-link{
         color: rgb(255, 255, 255);
     }
@@ -116,6 +123,45 @@
         position: absolute;
         right: 10px;
         top: 10px;
+    }
+
+    .nav-item a
+    {
+        width: 100%;
+    }
+    .nav-item a.Active-link::after{
+        content:'';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: rgb(255, 255, 255);
+        bottom: -23.5px;
+        left: 0px;
+        transform: scaleX(1);
+        transition: 0.3s;
+    }
+
+    .nav-item
+    {
+        position: relative;
+    }
+
+    .nav-item::after
+    {
+        content:'';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: rgb(0, 0, 0);
+        bottom: -21.5px;
+        left: 0px;
+        transform: scaleX(0);
+        transition: 0.3s;
+    }
+
+    .nav-item:hover::after
+    {
+        transform: scaleX(1);
     }
 
     /* css for user (login sign,...) */
