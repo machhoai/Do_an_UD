@@ -111,7 +111,7 @@ export default {
 #navbar {
   padding: 0px;
   background: gray;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .nav-item {
@@ -124,9 +124,7 @@ export default {
   height: 100%;
 }
 
-.navbar-nav {
-  height: 100%;
-}
+
 
 #navbarSupportedContent ul {
   display: flex;
@@ -165,6 +163,8 @@ export default {
   transform: scaleX(1);
   transition: 0.3s;
 }
+
+
 
 .nav-item {
   position: relative;
@@ -230,6 +230,13 @@ export default {
 @media screen and (max-width: 991px) {
   .ForUser {
     margin-right: 50px;
+  }
+  .nav-item a.Active-link::after{
+    display: none;
+    
+  }
+  .nav-item::after{
+    display: none;
   }
 }
 

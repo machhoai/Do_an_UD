@@ -87,6 +87,8 @@ const routes = [
     name: 'user',
     component: () => import(/* webpackChunkName: "User" */ '../views/User.vue')
   }
+
+
 ]
 
 const router = createRouter({
