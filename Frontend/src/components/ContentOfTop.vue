@@ -12,189 +12,64 @@
             </ul>
         </nav>
         <div class="products">
-            <div class="aproduct product-1">
+            <div class="aproduct product" v-for="(item,index) of product" :key="index" @click="GoProductPage(item)">
                 <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
+                    <img :src="item.nameImage" alt="">
                 </div>
                 <div class="product-info">
                     <div class="product-color">
 
                     </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
+                    <h3 id="product-name">{{item.productName}}</h3>
+                    <div class="box-price" v-if="item.sale !== 0">
+                        <span id="curr-price">{{priceSale[index]}}<u>VND</u></span>
+                        <span id="old-price"><s>{{item.price}}<u>VND</u></s></span>
                     </div>
-                </div>
-            </div>
-            <div class="aproduct product-2">
-                <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-3">
-                <div class="product-img">
-                    <img src="../assets/Top/20230609_DbKKhK8Bp9.jpeg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-4">
-                <div class="product-img">
-                    <img src="../assets/Top/20230609_wk5mJTHLCH.jpeg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-5">
-                <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-6">
-                <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-7">
-                <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-8">
-                <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-9">
-                <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-10">
-                <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-11">
-                <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
-                    </div>
-                </div>
-            </div>
-            <div class="aproduct product-12">
-                <div class="product-img">
-                    <img src="../assets/Top/20220512_tl1yKJNIBi5K4A4B0UinNeDN.jpg" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="product-color">
-
-                    </div>
-                    <h3 id="product-name">Candle Holiday T-shirt</h3>
-                    <div class="box-price">
-                        <span id="curr-price">410,000<u>đ</u></span>
-                        <span id="old-price"><s>500,000<u>đ</u></s></span>
+                    <div class="box-price" v-else>
+                        <span id="old-price" style="font-weight:600">{{item.price}}<u>VND</u></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+    data() {
+        return {
+            product:null,
+            priceSale: null,
+        }
+    },
+    methods:{
+        GoProductPage(item){
+        this.$router.push({name:'ProductInformation', params:{maProduct: item.maProduct}})
+      },
+        async GetData(){
+            const Type = "ao";
+            const Product = await axios.post("http://localhost:3000/api/productfilter",
+                {Type}
+            );           
+            this.product = Product.data.DT
+            console.log(">>>show product: ",Product.data.DT )
+            const list =[]
+            for(var i =0; i < this.product.length; i ++)
+            {
+                const price = parseInt(this.product[i].price.replace(/\./g, ""));
+                list[i] = price - (price*(this.product[i].sale)/100)
+            }
+            this.priceSale =list
+            console.log(">>>show price sale: ",this.priceSale )
+        },
+        
+    },
+    mounted(){
+        this.GetData()
+    },
+}
+</script>
 
 <style scoped>
 
@@ -297,7 +172,7 @@ h1
 
 .product-color
 {
-
+    
     max-width: 100%;
 }
 
@@ -325,6 +200,7 @@ h1
 .box-price #curr-price
 {
     font-size: 20px;
+    text-decoration: none;
     color: red;
     font-weight: 700;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -352,7 +228,7 @@ h1
     }
     .box-price #curr-price
     {
-        color: red;
+        text-decoration: none;        color: red;
         font-weight: 700;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 15px;

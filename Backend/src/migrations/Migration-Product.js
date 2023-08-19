@@ -5,9 +5,8 @@ module.exports = {
     await queryInterface.createTable('Products', {
       maProduct: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       productName: {
         allowNull: false,
@@ -28,7 +27,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      pathImage: {
+      nameImage: {
         allowNull: false,
         type: Sequelize.STRING
       },

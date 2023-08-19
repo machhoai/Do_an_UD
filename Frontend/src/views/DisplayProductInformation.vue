@@ -4,35 +4,24 @@
             <div class="Picture-product col-10">
                 <div class="Elm-Sale">
                     <span class="sale-off">
-                        10% <br>
+                        {{product.sale}}% <br>
                         OFF
                     </span>
                 </div>
-                <img src="../assets/Candles-Bolt-Polo-black.jpeg" class="w-100" alt="">
+                <img :src="product.path" class="w-100" alt="">
             </div>
         </div>
         <div class="Infor-Product col-10 col-md-6">
             <div class="Name-Price">
-                <h1>Candles Spray Tshirt</h1>
-                <p>Mã hàng : TS0115</p>
+                <h1>{{product.name}}</h1>
+                <p>Mã hàng : {{product.productcode}}</p>
                 <div class="Sale">
-                    <h2 class="price-sale"><b>369,000 VND</b> </h2>
-                    <p class="ole-price"> <strike>410,000 VND</strike> </p>
+                    <h2 class="price-sale" v-if="product.sale !== 0"><b>{{Sale}} VND</b> </h2>
+                    <p class="ole-price"> <s>{{product.price}}VND</s>  </p>
                 </div>
             </div>
             <div class="Introduce-product">
-                <h2>CANDLES SPRAY T-SHIRT</h2>
-                <h3> <b>✦ Chất liệu:</b> Carbon brushed soft cotton 260gsm </h3>
-                <h3><b>✦ Fitting:</b> Oversize Fit </h3>
-                <h3><b>✦ Chi tiết:</b></h3>
-                <p>+ Sử dụng chất liệu Cotton sợi đôi - double yarn weaving với cách dệt đặc biệt tạo cảm giác vải dày dặn hơn.</p>
-                <p>+ Bề mặt vải có độ mềm mịn như nhung, tạo cảm giác thoải mái. </p>
-                <p>+ Bề mặt vải có độ mềm mịn như nhung, tạo cảm giác thoải mái. </p>
-                <h3><b>✦ Hướng dẫn bảo quản:</b></h3>
-                <p>+ Sản phẩm bền nhất khi giặt tay.</p>
-                <p>+ Nếu giặt máy, hãy giặt ở nhiệt độ thường.</p>
-                <p>+ Khi phơi tránh ánh nắng trực tiếp.</p>
-                <p>+ Nên treo sản phẩm để sản phẩm có độ bền phom dáng.</p>
+                <p>{{product.infoProduct}}</p>
             </div>
             <div class="Size">
                 <h1>Size</h1>
@@ -55,15 +44,41 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-    name: 'ProductIformation',
     data() {
         return {
+            product:{
+                path:'',
+                name:'',
+                price:'',
+                productcode:'',
+                infoProduct:'',
+                sale: 0,
+
+            },
             SizeActive: null,
             number: 1,
-            Selection:''
+            Selection:'',
+            PriceSale:0,
+            
         }
-
+    },
+    mounted(){
+        this.GetDataProduct();
+        
+    },
+    computed:{
+        Sale()
+        {
+            if(this.product !== null)
+            {
+                const price = parseInt(this.product.price.replace(/\./g, ""))
+                console.log(">>>check pricesale: ", price);
+                return price - ((price) * (this.product.sale) / 100)
+            }
+            
+        }
     },
     methods:{
         ChooseSize(data){
@@ -82,9 +97,24 @@ export default {
             
         },
         Added(){
-                alert('Đã add vào cart');
-            }
-    }
+            alert('Đã add vào cart');
+        },
+        async GetDataProduct() {
+            console.log(">>>check params: ", this.$route.params);
+            const productdetail = await axios.post("http://localhost:3000/api/productdetail",
+                this.$route.params
+            );
+            console.log(">>>check productdetail: ", productdetail.data.DT);
+            this.product.path = productdetail.data.DT.nameImage
+            this.product.name = productdetail.data.DT.productName
+            this.product.price = productdetail.data.DT.price
+            this.product.productcode = productdetail.data.DT.maProduct
+            this.product.infoProduct = productdetail.data.DT.productInfo
+            this.product.sale = productdetail.data.DT.sale
+            console.log(">>>check product: ", this.product.path);
+        },
+    },
+    
 }
 </script>
 
@@ -93,7 +123,7 @@ export default {
     {
         display: flex;
         justify-content: center;
-       
+        margin: 20px 0;
 
     }
     /* css phần hình ảnh sản phẩm */
@@ -136,6 +166,9 @@ export default {
     {
         display: flex;
     
+    }
+    .Infor-Product .Name-Price .price-sale{
+        color: red;
     }
     .Infor-Product .Name-Price .Sale h2
     {

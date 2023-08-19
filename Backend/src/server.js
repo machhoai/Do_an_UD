@@ -5,8 +5,16 @@ import initApiRouter from "./routes/api"
 import connection from "./config/ConnectDB"
 require("dotenv").config();
 import bodyParser from "body-parser";
+import path from 'path'
+
 
 const app = express();
+
+
+
+// make public directory's files static
+app.use(express.static('public'))
+
 
 //config view engine
 configViewEngine(app);

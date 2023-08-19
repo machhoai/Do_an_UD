@@ -73,7 +73,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login&Sign-Up/Login.vue')
   },
   {
-    path: '/product',
+    path: '/product/:maProduct',
     name: 'ProductInformation',
     component: () => import(/* webpackChunkName: "product" */ '../views/DisplayProductInformation.vue')
   },
@@ -86,7 +86,18 @@ const routes = [
     path: '/user',
     name: 'user',
     component: () => import(/* webpackChunkName: "User" */ '../views/User.vue')
-  }
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import(/* webpackChunkName: "Admin" */ '../views/Admin.vue')
+  },
+  {
+    path: '/edit/:maProduct',
+    name: 'EditProduct',
+    component: () => import(/* webpackChunkName: "product" */ '../views/EditProduct.vue')
+  },
+  
 ]
 
 const router = createRouter({

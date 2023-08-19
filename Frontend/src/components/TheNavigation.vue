@@ -65,6 +65,9 @@
             <li class="nav-item">
               <router-link to="/aboutus">About Us</router-link>
             </li>
+            <li class="nav-item" v-if="Account.isAdmin">
+              <router-link to="/admin">ADMIN</router-link>
+            </li>
           </ul>
         </div>
       </div>

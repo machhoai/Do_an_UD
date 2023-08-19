@@ -96,16 +96,27 @@ export default {
       if (checkmessage.data.EC === 0) {
         const data = {
           isAuthenticater: true,
-          token: 'fake token'
+          token: 'fake token',
+          isAdmin: false
         }
         sessionStorage.setItem('account', JSON.stringify(data));
         this.$router.push({path:"/"})
         setTimeout(() => {
         window.location.reload();
-      }, 100);
-        
-        
-        
+      }, 100);     
+      }
+      else if (checkmessage.data.EC === 4) {
+        console.log(">>> check message: ", checkmessage.data.EC);
+        const data = {
+          isAuthenticater: true,
+          token: 'fake token',
+          isAdmin: true
+        }
+        sessionStorage.setItem('account', JSON.stringify(data));
+        this.$router.push({path:"/"})
+        setTimeout(() => {
+        window.location.reload();
+      }, 100);     
       }
       else if (checkmessage.data.EC !== 0) {
         alert("your email or password is not correct!");
