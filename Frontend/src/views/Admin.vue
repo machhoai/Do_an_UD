@@ -53,7 +53,7 @@
     <div class="show_Product col-10 col-lg-8" v-if="myProduct !== null">
       <div style="display:flex;">
         <h1>{{ProductCode}}</h1>
-        <h1>{{nameProduct}}</h1>
+        <h1>{{NameProduct}}</h1>
       </div>
       <div class="button">
         <button class="bg-warning" type="submit" @click="Edit()">Edit</button>
@@ -138,7 +138,7 @@ export default {
     
   },
   computed:{
-    nameProduct(){
+    NameProduct(){
       if(this.myProduct !== null){
         return this.myProduct.productName
       }
