@@ -198,6 +198,9 @@ export default {
         "http://localhost:3000/api/deleteproduct",
         {ma}
       );
+      setTimeout(() => {
+          window.location.reload();
+        }, 100);
     },
     async SaveBin(ma){
         const save = await axios.post(

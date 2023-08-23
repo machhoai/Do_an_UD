@@ -182,7 +182,27 @@ const RecycleBin = async (req,res)=>{
         DT: data.DT
     })
 }
+//change password
+const ChangePass = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.ChangePassword(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
+//get info
+const GetInforUser = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.InforUser(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
 module.exports = {
     ApiHome, handleregister, handlelogin, AddProduct,Renderimage,ProductDetail,ProductFilter,DeleteProduct,UpdateProduct,
-    FindProductInDB,AddToBag,ShowProductInBag,RemoveProduct,ThanhToan,SaveBin,RecycleBin
+    FindProductInDB,AddToBag,ShowProductInBag,RemoveProduct,ThanhToan,SaveBin,RecycleBin,ChangePass,GetInforUser
 }

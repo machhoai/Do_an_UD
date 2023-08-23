@@ -1,4 +1,15 @@
-
-  [
-    
-  ]
+[
+  {
+    "Product": {
+      "maProduct": "1a5",
+      "productName": "polo",
+      "soLuong": 10,
+      "price": "100.000",
+      "productInfo": "",
+      "sale": 0,
+      "nameImage": "",
+      "type": "ao"
+    }
+  }
+  
+]

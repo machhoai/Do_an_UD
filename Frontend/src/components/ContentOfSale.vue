@@ -23,7 +23,7 @@
                     </div>
                     <h3 id="product-name">{{item.productName}}</h3>
                     <div class="box-price" v-if="item.sale !== 0">
-                        <span id="curr-price">{{priceSale[indexProd][index]}} VND</span>
+                        <span id="curr-price">{{priceSale[indexProd][index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}} VND</span>
                         <span id="old-price"><s>{{item.price}} VND</s></span>
                     </div>
                     <div class="box-price" v-else>
@@ -48,7 +48,7 @@ export default {
             product:null,
             priceSale: null,
             startIndex:0,
-            endIndex: 10,
+            endIndex: 15,
             indexpage:0,
             indexproducts:0,
         }

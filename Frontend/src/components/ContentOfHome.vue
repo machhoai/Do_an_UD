@@ -56,7 +56,7 @@
             <!-- sale product -->
             <div class="carousel-inner" >
               <!-- slide 1 -->
-              <div class="carousel-item active" v-for="list of listSlide" :key="list"  >
+              <div class="carousel-item active" v-for="(list,index) of listSlide" :key="index"  >
                   <div class="row flex-wrap w-100" >
                     <div class="Product col-6 col-lg-3 col-sm-4"  v-for="item of list" :key="item" @click="GoProductPage(item)">
                       <div class="Elm-Sale col-3 	col-lg-2 col-md-2.2 " >

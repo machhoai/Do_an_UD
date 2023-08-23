@@ -35,6 +35,8 @@ const initApiRouter = (app) => {
     router.post('/thanhtoan',ApiController.ThanhToan)
     router.post('/savebin',ApiController.SaveBin)
     router.post('/recyclebin',ApiController.RecycleBin)
+    router.post('/changepass',ApiController.ChangePass)
+    router.post('/getinforuser',ApiController.GetInforUser)
     return app.use('/api', router)
 }
 

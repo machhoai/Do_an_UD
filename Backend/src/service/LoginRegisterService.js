@@ -58,7 +58,7 @@ const RegisterNewUser = async (rawUser) => {
         if (checkemail === true) {
             return {
                 EM: 'the email is exist',
-                EC: 1
+                EC: 2
             }
         }
         //hash password
@@ -604,7 +604,7 @@ const SaveRecycleBin = async(rawData)=>{
         const jsonData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
         // Dữ liệu mới cần thêm
         const newItem = { Product: Save };
-        jsonData.items.push(newItem);
+        jsonData.push(newItem);
         const updatedData = JSON.stringify(jsonData, null, 2); // Định dạng dữ liệu cho dễ đọc
         fs.writeFileSync(jsonPath , updatedData);
         
@@ -644,8 +644,59 @@ const RecycleBinData = async (rawData)=>{
         }
     }
 }
+//change password
+const ChangePassword = async (rawData)=>{
+    try {
+        const newPass = HashPass(rawData.newpass);
 
+        const ChangePass = await db.Users.update({password:newPass},{
+            where:{
+                mauser: rawData.mauser
+            }
+        })
+        return {
+            EM: 'change success',
+            EC: 0,
+            DT: ''
+        }
+        
+    } catch (error) {
+        console.log(">>> check error: ", error);
+        return {
+            EM: 'something wrongs in service ...',
+            EC: 3,
+            DT: ''
+        }
+    }
+}
+// get infor user
+const InforUser = async (rawData)=>{
+    try{
+
+        const InformationUser = await db.Users.findOne({
+            where:{
+                mauser: rawData.mauser
+            },
+            attributes:['username','email','phone']
+        })
+        console.log(">>>Check infor user: ",InformationUser)
+        return {
+            EM: 'information user',
+            EC: 0,
+            DT: InformationUser
+        }
+    }catch(error)
+    {
+        console.log(">>> check error: ", error);
+        return {
+            EM: 'something wrongs in service ...',
+            EC: 3,
+            DT: ''
+        }
+    }
+}
 module.exports = {
     RegisterNewUser, handlelogin, handleAddProduct,RenderListImage,ProductDetailInformation, ProductFilterFolowType,DeleteProductInDB
     ,UpdateProductInDB,FindProduct,AddProductToBag,ShowProductHaveInBag,RemoveProductInBag,ThanhToanProduct,SaveRecycleBin,RecycleBinData
+    ,ChangePassword,InforUser
 }
