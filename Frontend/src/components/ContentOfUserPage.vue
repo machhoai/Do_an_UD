@@ -19,7 +19,6 @@
     width: 50%;
     padding: 0;
     margin-top: 50px;
-    position: relative;
   }
 
   .active
@@ -31,7 +30,6 @@
   {
     width: 30%;
     border-right: 1px solid rgba(0, 0, 0, 0.76);
-    position: relative;
   }
   .username
   {
@@ -77,6 +75,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 7px;
+    cursor:pointer ;
   }
 
   .funtion li i
@@ -84,6 +83,33 @@
     padding-right: 10px;
     font-size: 25px;
   }
+@media(max-width:1292px){
+  .container
+  {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .funtion
+  {
+    justify-content: center;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid black;
+  }
+  .components
+  {
+    width: 100%;
+  }
+  li 
+  {
+    justify-content: center;
+  }
+  .username
+  {
+    justify-content: center;
+  }
+}
+
 </style>
 
 <script>

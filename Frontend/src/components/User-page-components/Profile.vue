@@ -4,9 +4,6 @@
         <div class="box name">Mạch Hoài</div>
         <div class="box mail">machhoai1234@gmail.com</div>
         <div class="box phone">0938571951</div>
-        <div class="box address">Địa chỉ</div>
-        <div class="box district">Quận / Huyện</div>
-        <div class="box city">Tỉnh / Thành phố</div>
         <button class="changeBtn">Thay đổi</button>
     </div>
 </template>

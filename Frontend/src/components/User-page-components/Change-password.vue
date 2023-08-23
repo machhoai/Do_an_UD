@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="containers">
         <h4>Đổi mật khẩu</h4>
         <div class="password">
         <div class="password-input-container">
@@ -20,7 +20,7 @@
                 class="password-input"
             />
             <label class="password-placeholder" :class="{ active: isNewPasswordEntered }">Nhập mật khẩu mới</label>
-            <div class="password-error-message" v-if="isNewPasswordEntered && !isNewPasswordValid">* Tối thiểu 8 kí tự</div>
+            <div class="password-error-message" v-show="isNewPasswordEntered && !isNewPasswordValid">* Tối thiểu 8 kí tự</div>
         </div>
 
         <div class="password-input-container">
@@ -39,7 +39,7 @@
 </template>
 
 <style scoped>
-.container
+.containers
 {
     flex-direction: column;
     text-align: left;
