@@ -73,7 +73,7 @@
               </div>
             </div>
             <!-- bottom chuyển silde-->
-            <button class="carousel-control-prev" type="button" data-bs-target="#item-sale" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#item-sale" data-bs-slide="prev" >
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
@@ -96,7 +96,6 @@ import axios from "axios";
         listSlide: null,
         startIndex:0,
         endIndex: 12,
-        step: 12
       }
     },
     methods:{

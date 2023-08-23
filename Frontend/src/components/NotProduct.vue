@@ -1,6 +1,5 @@
 <template>
-    <div class="contain">
-        <h1>Giỏ Hàng Của Bạn</h1>
+    <div class="contain col-12">
         <p>Không có sản phẩm nào trong giỏ hàng</p>
         <router-link to="/">
             <i class="fa-solid fa-reply" style="color: #000000;"></i>
@@ -13,15 +12,9 @@
     .contain
     {
         height: 300px;
-        width:  100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-    }
-    h1{
-        font-size: 30px;
-        font-weight: 600;
     }
     p
     {
@@ -33,6 +26,6 @@
     }
     a:hover
     {
-        border-bottom: 1px solid gray ;
+        font-weight: 600;
     }
 </style>

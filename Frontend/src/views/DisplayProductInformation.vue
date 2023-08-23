@@ -15,9 +15,12 @@
             <div class="Name-Price">
                 <h1>{{product.name}}</h1>
                 <p>Mã hàng : {{product.productcode}}</p>
-                <div class="Sale">
-                    <h2 class="price-sale" v-if="product.sale !== 0"><b>{{Sale}} VND</b> </h2>
-                    <p class="ole-price"> <s>{{product.price}}VND</s>  </p>
+                <div class="Sale" v-if="product.sale !== 0">
+                    <h2 class="price-sale" ><b>{{Sale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}} VND</b> </h2>
+                    <p class="ole-price"> <s>{{product.price}} VND</s></p>
+                </div>
+                <div class="Sale" v-else>
+                    <p class="ole-price" >{{product.price}} VND</p>
                 </div>
             </div>
             <div class="Introduce-product">
@@ -26,10 +29,10 @@
             <div class="Size">
                 <h1>Size</h1>
                 <div class="chooseSize">
-                    <input type="button" value="S" @click="ChooseSize(1)" :class="{'input-active':SizeActive === 1}">
-                    <input type="button" value="M" @click="ChooseSize(2)" :class="{'input-active':SizeActive === 2}">
-                    <input type="button" value="L" @click="ChooseSize(3)" :class="{'input-active':SizeActive === 3}">
-                    <input type="button" value="XL" @click="ChooseSize(4)" :class="{'input-active':SizeActive === 4}">
+                    <input type="button" value="S" @click="ChooseSize('S')" :class="{'input-active':SizeActive === 'S'}">
+                    <input type="button" value="M" @click="ChooseSize('M')" :class="{'input-active':SizeActive === 'M'}">
+                    <input type="button" value="L" @click="ChooseSize('L')" :class="{'input-active':SizeActive === 'L'}">
+                    <input type="button" value="XL" @click="ChooseSize('XL')" :class="{'input-active':SizeActive === 'XL'}">
                 </div>
                 <div class="quantity">
                     <p>Số Lượng</p>
@@ -37,10 +40,20 @@
                     <input type="number" v-model="number" name="Enter-Quantity" min="1">
                     <button class="plus" @click="EnterQuantity('+')">+</button>
                 </div>
-                <button class="AddToCart" @click="Added()">Add To Cart</button>
+                <button class="AddToCart" @click="Added()" >Add To Cart</button>
+            </div>
+        </div>
+        <!-- Thông báo ra màn hình -->
+        <div class="toast align-items-center" :class="{'toastshow':toast}" ref="mytoast" v-if="toast" role="alert" aria-live="assertive" aria-atomic="true" >
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{success}}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
     </div>
+    
 </template>
 
 <script>
@@ -61,12 +74,21 @@ export default {
             number: 1,
             Selection:'',
             PriceSale:0,
-            
+            Account: [],
+            toast: false,
+            success:'Đặt Hàng Thành Công !'
         }
     },
     mounted(){
         this.GetDataProduct();
+
+        const session = sessionStorage.getItem("account");
+        if (session) {
+            this.Account = JSON.parse(session);
+            console.log(">>> account:", this.Account.mauser);
+        }
         
+
     },
     computed:{
         Sale()
@@ -75,7 +97,7 @@ export default {
             {
                 const price = parseInt(this.product.price.replace(/\./g, ""))
                 console.log(">>>check pricesale: ", price);
-                return price - ((price) * (this.product.sale) / 100)
+                return (price - ((price) * (this.product.sale) / 100));
             }
             
         }
@@ -83,6 +105,7 @@ export default {
     methods:{
         ChooseSize(data){
             this.SizeActive = data;
+            console.log(">>> check SizeActive", this.SizeActive)
         },
         EnterQuantity(data){
             this.Selection = data;
@@ -96,8 +119,30 @@ export default {
             }
             
         },
-        Added(){
-            alert('Đã add vào cart');
+        async Added(){
+            console.log(">>>check so luong : ",this.number)
+            // alert('Đã add vào cart');
+            this.toast = true
+            
+            const mauser = this.Account.mauser
+            const soluong = this.number
+            const size = this.SizeActive
+            const maProduct = this.$route.params.maProduct
+            const thanhtien = (this.Sale * soluong ).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+            console.log(">>>check maproduct: ",maProduct)
+            setTimeout(() => {
+                this.toast = false;
+            }, 5000); 
+            //goi api
+            const AddToBag = await axios.post("http://localhost:3000/api/addtobag",
+                {
+                    mauser,
+                    soluong,
+                    size,
+                    maProduct,
+                    thanhtien
+                }
+            );
         },
         async GetDataProduct() {
             console.log(">>>check params: ", this.$route.params);
@@ -279,5 +324,14 @@ export default {
         background: black;
         color: white;
         cursor: pointer;
+    }
+    /* css toast */
+    .toast{
+        position: absolute;
+        right: 20px;
+        
+    }
+    .toastshow{
+        display: block;
     }
 </style>

@@ -62,12 +62,43 @@
       
     </div>
   </div>
-
-
+  <!-- Thông báo ra màn hình -->
+        <div class="toast align-items-center" :class="{'toastshow':toast}" ref="mytoast" v-if="toast" role="alert" aria-live="assertive" aria-atomic="true" >
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{notification}}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    <div class="BTN-Recycle-Bin">
+      <button @click="Show()">Recycle Bin</button>
+    </div>
+    <table class="productBag col-10" v-show="show" >
+      <thead>
+          <tr>
+            <th class="product col-3" scope="col"></th>
+            <th class="col-4" scope="col">Mã Sản Phẩm</th>
+            <th class="col-4" scope="col">Tên Sản Phẩm</th>
+            <th class="col-4" scope="col"></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="bagProd" v-for="(item,index) of Bin" :key="index">
+              <th class="info flex-wrap" scope="row">
+                <img :src="item.Product.nameImage" class="image col-5" alt="">
+              </th>
+              <td>{{item.Product.maProduct}}</td>
+              <td>{{item.Product.productName}}</td>
+              <td><button type="submit">Get</button></td>
+          </tr>
+      </tbody>
+    </table>
 </template>
 
 <script>
 import axios from "axios";
+// import store from '../store/store'
 export default {
   data() {
     return {
@@ -81,10 +112,23 @@ export default {
       sale: 0,
       typeProduct:'',
       findmaproduct:'',
-      myProduct:null
+      myProduct:null,
+      toast: false,
+      notification:'',
+      Bin:null,
+      show:false
     };
   },
+  mounted(){
+    this.GetBin()
+    
+  },
   methods: {
+    async GetBin(){
+      const DataBin =  await axios.post("http://localhost:3000/api/recyclebin");
+      console.log(">>>check save: ", DataBin.data.DT)
+      this.Bin =DataBin.data.DT
+    },
     GetFile(event) {
       this.getInfoImage = event.target.files[0];
     },
@@ -105,6 +149,18 @@ export default {
         "http://localhost:3000/api/apiproduct",
         formData
       );
+      if(Addproduct.data.EC === 1){
+        this.toast = true
+        this.notification ="the maproduct is exist"
+        setTimeout(() => {
+          this.toast = false;
+        }, 5000);
+      }
+      else if(Addproduct.data.EC === 0){
+        setTimeout(() => {
+          window.location.reload();
+        }, 100); 
+      }
     },
 
     async FindProduct(){
@@ -115,25 +171,39 @@ export default {
       this.myProduct = findproduct.data.DT 
       console.log(">>>myProduct ", this.myProduct);
       if(findproduct.data.EC !== 0 ){
-        alert("not found your product code")
+        this.toast = true
+        this.notification ="not found your product code"
+        setTimeout(() => {
+                this.toast = false;
+            }, 5000); 
       }
     },
-
-    Edit(){
-      if(this.findmaproduct !== ""){
-        const ma = this.findmaproduct
-        this.$router.push({name:'EditProduct', params:{maProduct:ma}})
+    Show(){
+      if(this.show !== true){
+        this.show = true
       }
       else{
-        alert("you must enter product code")
+        this.show = false
       }
+      
+    },
+    Edit(){
+        const ma = this.findmaproduct
+        this.$router.push({name:'EditProduct', params:{maProduct:ma}})
     },
     async Delete(){
       const ma = this.findmaproduct
+      this.SaveBin(ma)
       const Delete = await axios.post(
         "http://localhost:3000/api/deleteproduct",
         {ma}
       );
+    },
+    async SaveBin(ma){
+        const save = await axios.post(
+        "http://localhost:3000/api/savebin",
+        {ma}
+      );     
     }
     
   },
@@ -218,5 +288,58 @@ export default {
   margin-left: 10px;
   font-weight: 600;
   height: 40px;
+}
+/* css toast */
+    .toast{
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        
+    }
+    .toastshow{
+        display: block;
+    }
+
+/* css phần thùng rác */
+.BTN-Recycle-Bin{
+  margin-top:20px ;
+
+}
+.BTN-Recycle-Bin button{
+  background: rgb(225, 222, 222);
+  font-weight: 700;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+}
+.Recycle-Bin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.productBag{
+  margin-top: 20px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.productBag .bagProd{
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+.productBag .info{
+  display: flex;
+  margin: 5px 0;
+  justify-content: center;
+}
+.productBag .info .image{
+    height: 100px;
+    width: 100px;
+}
+
+.bagProd button{
+  border-radius: 5px;
+  background: yellow;
+  font-weight: 600;
 }
 </style>

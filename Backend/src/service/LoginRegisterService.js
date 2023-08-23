@@ -2,6 +2,8 @@
 import { json } from 'body-parser';
 import db from '../models/index.js';
 import bcrypt from 'bcrypt';
+import fs from 'fs'
+const path = require('path');
 const { Op, where } = require('sequelize');
 
 const salt = bcrypt.genSaltSync(10);
@@ -113,8 +115,9 @@ const handleAddProduct = async (rawData, nameImage) => {
         if (checkMaProduct === true) {
             console.log(">>> maproduct is exits:")
             return {
-                EM: 'the email is exist',
-                EC: 1
+                EM: 'the maproduct is exist',
+                EC: 1,
+                DT:''
             }
         }
         console.log(">>> maproduct is not exits", rawData.maproduct)
@@ -128,6 +131,11 @@ const handleAddProduct = async (rawData, nameImage) => {
             type: rawData.type,
             nameImage: "http://localhost:3000/ImageUpload/" + nameImage
         })
+        return {
+            EM: 'add success',
+            EC: 0,
+            DT:''
+        }
 
     } catch (error) {
         console.log(">>>Check error at add product", error)
@@ -190,20 +198,20 @@ const handlelogin = async (rawData) => {
                         model: db.Groups,
                         attributes: ['groupName']
                     },
-                    attributes: ['email'],
+                    attributes: ['email','mauser'],
                     where: {
                         email: rawData.email,
                         '$Group.groupName$': "admin"
                     },
                 });
                 console.log(JSON.stringify(CorrectPassword, null, 2));
-                console.log(">>> login is success")
+                console.log(">>> login is success",CheckCermissions)
 
                 if (CheckCermissions) {
                     return {
                         EM: 'oke',
                         EC: 4,
-                        DT: ''
+                        DT: CheckCermissions
                     }
                 }
                 else {
@@ -400,7 +408,244 @@ const FindProduct = async (rawData)=>{
         }
     }
 }
+// add product to bag
+const AddProductToBag = async(rawData)=>{
+    try{
+
+        //kiem tra so luong trong kho
+        const SoLuongTrongKho = await db.Products.findOne({
+            where:{
+                maProduct:rawData.maProduct
+            },
+            attributes:['soLuong']
+        })
+        console.log(">>>check so luong trong kho: ", SoLuongTrongKho.soLuong)
+        if((SoLuongTrongKho.soLuong - rawData.soluong) >= 0)
+        {
+            // console.log(">>>check so luong con lai: ", (SoLuongTrongKho.soLuong - rawData.soluong))
+            // const SoLuongConLai = await db.Products.update({
+            //     soLuong:(SoLuongTrongKho.soLuong - rawData.soluong)
+            // },{
+            //     where:{maProduct:rawData.maProduct}
+            // })
+            // console.log(">>>check so luong con lai: ", SoLuongConLai)
+            const FindCodeSize = await db.Sizes.findOne({
+                where:{
+                    size: rawData.size
+                },
+                attributes:['sizeId']
+            })
+
+            console.log(">>>check FindCodeSize: ", FindCodeSize.sizeId)
+
+            const productBag = await db.Purchases.create({
+                mauser: rawData.mauser,
+                maProduct:rawData.maProduct,
+                sizeId: FindCodeSize.sizeId,
+                soLuongMua: rawData.soluong,
+                thanhTien: rawData.thanhtien,
+                
+            })
+            
+            
+            // const IdentifyZiseOfProduct = await db.SizeProducts.create({
+            //     sizeId: FindCodeSize.sizeId,
+            //     maProduct: rawData.maProduct,
+            // })
+            // console.log(">>>check IdentifyZiseOfProduct: ", IdentifyZiseOfProduct)
+            console.log(">>>check productBag: ", productBag)
+            return {
+                EM: 'add success',
+                EC: 0,
+                DT: ''
+            }
+        }
+        else{
+            return {
+                EM: 'not enough',
+                EC: 1,
+                DT: ''
+            }
+        }
+        
+    }catch(error)
+    {
+        console.log(">>> check error: ", error);
+        return {
+            EM: 'something wrongs in service ...',
+            EC: 3,
+            DT: ''
+        }
+    }
+}
+//
+const ShowProductHaveInBag = async(rawData)=>{
+    try{
+        const DataOfProduct = await db.Users.findAll(
+        {
+            
+            include:[{
+                model: db.Products,
+                through: { model: db.Purchases, attributes: ['soLuongMua','thanhTien'] },
+                attributes:['maProduct','productName','soLuong','price','sale','nameImage','type'],
+                where:{
+                },
+                
+            },
+            {
+                model: db.Sizes,
+                    attributes:['size'],
+                    through: { model: db.Purchases, attributes: [] },
+                    where:{
+                    }
+            }
+        ],
+            attributes:['mauser','username'],
+            where:{
+                mauser: rawData.mauser
+            }
+
+            
+        }
+        )
+        console.log(">>>check Purchases.maProduct: ",JSON.stringify(DataOfProduct) )
+        if(DataOfProduct.length > 0){
+            return {
+                EM: 'show product in bag',
+                EC: 0,
+                DT: DataOfProduct
+            }
+        }
+        else{
+            return {
+                EM: 'not has product in bag',
+                EC: 1,
+                DT: DataOfProduct
+            }
+        }
+        
+    }catch(e)
+    {
+        console.log(">>> check error: ", e);
+        return {
+            EM: 'something wrongs in service ...',
+            EC: 3,
+            DT: ''
+        }
+    }
+}
+// RemoveProductInBag 
+const RemoveProductInBag = async (rawData)=>{
+    try{
+        const Remove = await db.Purchases.destroy({
+            where:{
+                maProduct: rawData.maProduct
+            }
+        })
+        // const removeKeyOfSizeProducts = await db.SizeProducts.destroy({
+        //     where:{
+        //         maProduct: rawData.maProduct
+        //     }
+        // })
+        // console.log(">>> check removeKeyOfSizeProducts: ", removeKeyOfSizeProducts);
+        console.log(">>> check Remove: ", Remove);
+        return {
+            EM: 'remove the product is success',
+            EC: 0,
+            DT: Remove
+        }
+    }catch(e)
+    {
+        console.log(">>> check error: ", e);
+        return {
+            EM: 'something wrongs in service ...',
+            EC: 3,
+            DT: ''
+        }
+    }
+}
+//thanh toan 
+const ThanhToanProduct = async(rawData)=>{
+    try{
+        const thanhtoanPurchases = await db.Purchases.destroy({
+            where:{
+                mauser: rawData.mauser
+            }
+        })
+
+        console.log(">>> check thanhtoanPurchases: ", JSON.stringify(thanhtoanPurchases) );
+        
+        return {
+            EM: 'thanh toan thanh cong',
+            EC: 0,
+            DT: ''
+        }
+    }catch(e)
+    {
+        console.log(">>> check error: ", e);
+        return {
+            EM: 'something wrongs in service ...',
+            EC: 3,
+            DT: ''
+        }
+    }
+}
+// save vao Bin
+const SaveRecycleBin = async(rawData)=>{
+    try {
+        
+        const Save = await db.Products.findOne({
+            where:{
+                maProduct: rawData.ma
+            },
+            attributes:['maProduct','productName','soLuong','price','productInfo','sale','nameImage','type']
+        })
+        const jsonPath = path.join(__dirname, 'Data.json');
+        const jsonData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+        // Dữ liệu mới cần thêm
+        const newItem = { Product: Save };
+        jsonData.items.push(newItem);
+        const updatedData = JSON.stringify(jsonData, null, 2); // Định dạng dữ liệu cho dễ đọc
+        fs.writeFileSync(jsonPath , updatedData);
+        
+        const newdata = fs.readFileSync(jsonPath, 'utf8');
+        console.log(">>>check json:", JSON.parse(newdata) )
+        return {
+            EM: 'save to recycle bin',
+            EC: 0,
+            DT: (JSON.parse(newdata))
+        }
+    } catch (e) {
+        console.log(">>> check error: ", e);
+        return {
+            EM: 'something wrongs in service ...',
+            EC: 3,
+            DT: ''
+        }
+    }
+}
+// đọc dữ liệu
+const RecycleBinData = async (rawData)=>{
+    try {
+        const jsonPath = path.join(__dirname, 'Data.json');
+        const newdata = fs.readFileSync(jsonPath, 'utf8');
+        console.log(">>>check json:", JSON.parse(newdata) )
+        return {
+            EM: ' recycle bin',
+            EC: 0,
+            DT: (JSON.parse(newdata))
+        }
+    } catch (error) {
+        console.log(">>> check error: ", error);
+        return {
+            EM: 'something wrongs in service ...',
+            EC: 3,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     RegisterNewUser, handlelogin, handleAddProduct,RenderListImage,ProductDetailInformation, ProductFilterFolowType,DeleteProductInDB
-    ,UpdateProductInDB,FindProduct
+    ,UpdateProductInDB,FindProduct,AddProductToBag,ShowProductHaveInBag,RemoveProductInBag,ThanhToanProduct,SaveRecycleBin,RecycleBinData
 }
