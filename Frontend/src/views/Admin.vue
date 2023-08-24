@@ -90,7 +90,7 @@
               </th>
               <td>{{item.Product.maProduct}}</td>
               <td>{{item.Product.productName}}</td>
-              <td><button type="submit">Get</button></td>
+              <td><button type="submit" @click="GetProductFromBin(item.Product)">Get</button></td>
           </tr>
       </tbody>
     </table>
@@ -98,7 +98,6 @@
 
 <script>
 import axios from "axios";
-// import store from '../store/store'
 export default {
   data() {
     return {
@@ -124,6 +123,26 @@ export default {
     
   },
   methods: {
+    async GetProductFromBin(Product){
+      console.log(">>>Check Product in bin: ",Product)
+      const GetProductInBin =  await axios.post("http://localhost:3000/api/getproductinbag",Product);
+
+      if(GetProductInBin.data.EC === 0 ){
+        this.toast = true
+        this.notification ="Added success!"
+        setTimeout(() => {
+                this.toast = false;
+            }, 5000); 
+      }
+      else{
+        this.toast = true
+        this.notification ="Add failed!"
+        setTimeout(() => {
+                this.toast = false;
+            }, 5000);
+      }
+
+    },
     async GetBin(){
       const DataBin =  await axios.post("http://localhost:3000/api/recyclebin");
       console.log(">>>check save: ", DataBin.data.DT)

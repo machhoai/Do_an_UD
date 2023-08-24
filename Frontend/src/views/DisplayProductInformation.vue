@@ -76,7 +76,7 @@ export default {
             PriceSale:0,
             Account: [],
             toast: false,
-            success:'Đặt Hàng Thành Công !'
+            success:''
         }
     },
     mounted(){
@@ -122,7 +122,7 @@ export default {
         async Added(){
             console.log(">>>check so luong : ",this.number)
             // alert('Đã add vào cart');
-            this.toast = true
+            
             
             const mauser = this.Account.mauser
             const soluong = this.number
@@ -130,9 +130,7 @@ export default {
             const maProduct = this.$route.params.maProduct
             const thanhtien = (this.Sale * soluong ).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
             console.log(">>>check maproduct: ",maProduct)
-            setTimeout(() => {
-                this.toast = false;
-            }, 5000); 
+             
             //goi api
             const AddToBag = await axios.post("http://localhost:3000/api/addtobag",
                 {
@@ -143,6 +141,23 @@ export default {
                     thanhtien
                 }
             );
+            if(AddToBag.data.EC === 0)
+            {
+                this.success ='Đặt Hàng Thành Công !'
+                this.toast = true
+
+                setTimeout(() => {
+                this.toast = false;
+                }, 5000);
+            }
+            else if(AddToBag.data.EC !== 0)
+            {
+                this.success = "số lượng không đủ !"
+                this.toast = true
+                setTimeout(() => {
+                this.toast = false;
+                }, 5000);
+            }
         },
         async GetDataProduct() {
             console.log(">>>check params: ", this.$route.params);

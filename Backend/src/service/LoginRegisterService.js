@@ -422,13 +422,6 @@ const AddProductToBag = async(rawData)=>{
         console.log(">>>check so luong trong kho: ", SoLuongTrongKho.soLuong)
         if((SoLuongTrongKho.soLuong - rawData.soluong) >= 0)
         {
-            // console.log(">>>check so luong con lai: ", (SoLuongTrongKho.soLuong - rawData.soluong))
-            // const SoLuongConLai = await db.Products.update({
-            //     soLuong:(SoLuongTrongKho.soLuong - rawData.soluong)
-            // },{
-            //     where:{maProduct:rawData.maProduct}
-            // })
-            // console.log(">>>check so luong con lai: ", SoLuongConLai)
             const FindCodeSize = await db.Sizes.findOne({
                 where:{
                     size: rawData.size
@@ -446,13 +439,6 @@ const AddProductToBag = async(rawData)=>{
                 thanhTien: rawData.thanhtien,
                 
             })
-            
-            
-            // const IdentifyZiseOfProduct = await db.SizeProducts.create({
-            //     sizeId: FindCodeSize.sizeId,
-            //     maProduct: rawData.maProduct,
-            // })
-            // console.log(">>>check IdentifyZiseOfProduct: ", IdentifyZiseOfProduct)
             console.log(">>>check productBag: ", productBag)
             return {
                 EM: 'add success',
@@ -542,12 +528,6 @@ const RemoveProductInBag = async (rawData)=>{
                 maProduct: rawData.maProduct
             }
         })
-        // const removeKeyOfSizeProducts = await db.SizeProducts.destroy({
-        //     where:{
-        //         maProduct: rawData.maProduct
-        //     }
-        // })
-        // console.log(">>> check removeKeyOfSizeProducts: ", removeKeyOfSizeProducts);
         console.log(">>> check Remove: ", Remove);
         return {
             EM: 'remove the product is success',
@@ -567,6 +547,27 @@ const RemoveProductInBag = async (rawData)=>{
 //thanh toan 
 const ThanhToanProduct = async(rawData)=>{
     try{
+        //so luong trong kho sau khi thanh toan
+        const soluongmua = await db.Purchases.findAll({
+            attributes:['maProduct','soLuongMua']
+        })
+        console.log(">>> check soluongmua: ", JSON.stringify(soluongmua[0]));
+        for (let i = 0; i < soluongmua.length; i++){
+            const SoLuong = await db.Products.findOne({
+                where:{
+                    maProduct: soluongmua[i].maProduct
+                },
+                attributes:['soLuong']
+            })
+            console.log(">>> check SoLuong: ", JSON.stringify(SoLuong));
+            const updateSoLuongTrongKho = await await db.Products.update({
+                    soLuong:(SoLuong.soLuong - soluongmua[i].soLuongMua)
+                },{
+                    where:{maProduct:soluongmua[i].maProduct}
+                })
+            console.log(">>> check updateSoLuongTrongKho: ", JSON.stringify(updateSoLuongTrongKho));
+        }
+        
         const thanhtoanPurchases = await db.Purchases.destroy({
             where:{
                 mauser: rawData.mauser
@@ -695,8 +696,38 @@ const InforUser = async (rawData)=>{
         }
     }
 }
+//GetProductInBag
+const GetProductBag =async (rawData)=>{
+    try{
+
+        const Added = await db.Products.create({
+            maProduct: rawData.maProduct,
+            productName: rawData.productName,
+            soLuong: rawData.soLuong,
+            price: rawData.price,
+            productInfo: rawData.productInfo,
+            sale: rawData.sale,
+            nameImage: rawData.nameImage,
+            type: rawData.type,
+        })
+        console.log(">>> check Added: ", Added);
+        return {
+            EM: 'Add success',
+            EC: 0,
+            DT: ''
+        }
+    }catch(error)
+    {
+        console.log(">>> check error: ", error);
+        return {
+            EM: 'something wrongs in service ...',
+            EC: 3,
+            DT: ''
+        }
+    }
+}
 module.exports = {
     RegisterNewUser, handlelogin, handleAddProduct,RenderListImage,ProductDetailInformation, ProductFilterFolowType,DeleteProductInDB
     ,UpdateProductInDB,FindProduct,AddProductToBag,ShowProductHaveInBag,RemoveProductInBag,ThanhToanProduct,SaveRecycleBin,RecycleBinData
-    ,ChangePassword,InforUser
+    ,ChangePassword,InforUser,GetProductBag
 }

@@ -202,7 +202,17 @@ const GetInforUser = async (req,res)=>{
         DT: data.DT
     })
 }
+//GetProductInBag
+const GetProductInBag = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.GetProductBag(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
 module.exports = {
     ApiHome, handleregister, handlelogin, AddProduct,Renderimage,ProductDetail,ProductFilter,DeleteProduct,UpdateProduct,
-    FindProductInDB,AddToBag,ShowProductInBag,RemoveProduct,ThanhToan,SaveBin,RecycleBin,ChangePass,GetInforUser
+    FindProductInDB,AddToBag,ShowProductInBag,RemoveProduct,ThanhToan,SaveBin,RecycleBin,ChangePass,GetInforUser,GetProductInBag
 }

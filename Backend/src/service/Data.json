@@ -1,15 +1,14 @@
 [
   {
     "Product": {
-      "maProduct": "1a5",
-      "productName": "polo",
-      "soLuong": 10,
-      "price": "100.000",
+      "maProduct": "TS1a22",
+      "productName": "Candles Hidden Tshirt",
+      "soLuong": 100,
+      "price": "390.000",
       "productInfo": "",
-      "sale": 0,
-      "nameImage": "",
+      "sale": 10,
+      "nameImage": "http://localhost:3000/ImageUpload/1692799463099-ao22.jpeg",
       "type": "ao"
     }
   }
-  
 ]
