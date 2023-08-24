@@ -1,24 +1,26 @@
 <template>
-    <div class="container">
-        <nav class="funtion">
-          <div class="username"><i class="fa-regular fa-circle-user"></i><h4>Mạch Hoài</h4></div>
+    <div class="container1 col-10 flex-wrap">
+        <nav class="funtion col-xl-4 col-12">
+          <div class="username"><i class="fa-regular fa-circle-user"></i></div>
             <ul>
                 <li :class="{ 'active': showProfile }" @click="showProfileComponent" ><i class="fa-solid fa-user"></i> Hồ sơ của tôi</li>
                 <li :class="{ 'active': showChangePass }" @click="showChangePassComponent" ><i class="fa-solid fa-lock"></i> Đổi Mật Khẩu</li>
-                <li :class="{ 'active': showOrders }" @click="showOrdersComponent"><i class="fa-solid fa-bag-shopping"></i> Đơn hàng của tôi</li>
+              
             </ul>
         </nav>
-        <component class="components" :is="activeSection"></component>
+        <component class="components col-xl-8 col-12" :is="activeSection"></component>
     </div>
 </template>
 
 <style scoped>
-  .container
+  .container1
   {
     display: flex;
-    width: 50%;
     padding: 0;
     margin-top: 50px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .active
@@ -28,22 +30,24 @@
 
   .funtion
   {
-    width: 30%;
+    /* width: 30%; */
     border-right: 1px solid rgba(0, 0, 0, 0.76);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .username
   {
     display: flex;
-    width: 100%;
     height: auto;
     align-items: center;
     padding-bottom: 10px;
+    padding-left: 30px ;
   }
 
   .username i
   {
     font-size: 50px;
-    padding-right: 10px ;
     font-weight: lighter;
   }
 
@@ -55,23 +59,23 @@
 
   .components
   {
-    width: 70%; 
-    padding-left: 70px;
     height: auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
   }
 
   .funtion ul
   {
     list-style: none;
-    text-align: left;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 17px;
   }
 
   .funtion li
   {
-    padding: 7px;
+    padding: 7px 0;
     display: flex;
     align-items: center;
     margin-bottom: 7px;
@@ -114,43 +118,32 @@
 
 <script>
   import UserProfile from '@/components/User-page-components/Profile.vue';
-  import Orders from '@/components/User-page-components/My-oders.vue';
   import ChangePassword from '@/components/User-page-components/Change-password.vue';
   export default {
     components:{
-      UserProfile,Orders,ChangePassword
+      UserProfile,ChangePassword
     },
   data() {
     return {
       activeSection: '',
       showProfile: false,
-      showOrders: false,
       showChangePass: false
     };
   },
   created() {
     this.activeSection = 'UserProfile'; // Hiển thị Profile mặc định
     this.showProfile = true;
-    this.showOrders = false;
     this.showChangePass = false;
   },
   methods: {
     showProfileComponent() {
       this.activeSection = 'UserProfile';
       this.showProfile = true;
-      this.showOrders = false;
-      this.showChangePass = false;
-    },
-    showOrdersComponent() {
-      this.activeSection = 'Orders';
-      this.showProfile = false;
-      this.showOrders = true;
       this.showChangePass = false;
     },
     showChangePassComponent() {
       this.activeSection = 'ChangePassword';
       this.showProfile = false;
-      this.showOrders = false;
       this.showChangePass = true;
     }
     }

@@ -56,7 +56,7 @@
             <!-- sale product -->
             <div class="carousel-inner" >
               <!-- slide 1 -->
-              <div class="carousel-item active" v-for="list of listSlide" :key="list"  >
+              <div class="carousel-item active" v-for="(list,index) of listSlide" :key="index"  >
                   <div class="row flex-wrap w-100" >
                     <div class="Product col-6 col-lg-3 col-sm-4"  v-for="item of list" :key="item" @click="GoProductPage(item)">
                       <div class="Elm-Sale col-3 	col-lg-2 col-md-2.2 " >
@@ -73,7 +73,7 @@
               </div>
             </div>
             <!-- bottom chuyển silde-->
-            <button class="carousel-control-prev" type="button" data-bs-target="#item-sale" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#item-sale" data-bs-slide="prev" >
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
@@ -96,7 +96,6 @@ import axios from "axios";
         listSlide: null,
         startIndex:0,
         endIndex: 12,
-        step: 12
       }
     },
     methods:{

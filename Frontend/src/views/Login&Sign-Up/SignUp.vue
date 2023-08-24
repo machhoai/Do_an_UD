@@ -1,4 +1,15 @@
 <template>
+  <!-- Thông báo ra màn hình -->
+  <div class="toast align-items-center" :class="{'toastshow':toast}" ref="mytoast" v-if="toast" role="alert" aria-live="assertive" aria-atomic="true" >
+    <div class="d-flex">
+      <div class="toast-body">
+        {{notification}}
+      </div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+
+
   <div class="Background col-10">
     <div class="col-lg-8 col-10" id="Container">
       <h1>SIGN UP</h1>
@@ -128,6 +139,8 @@ export default {
         iconText: false,
       },
       selection: "",
+      toast: false,
+      notification:''
     };
   },
   methods: {
@@ -159,15 +172,27 @@ export default {
         }
         else if(checkmessage.data.EC === 1)
         {
-          alert("email is exits!")
+          this.toast = true
+          this.notification ="email is exits!"
+          setTimeout(() => {
+                this.toast = false;
+            }, 5000); 
         }
         else if(checkmessage.data.EC === 3)
         {
-          alert("error when you register!")
+          this.toast = true
+          this.notification ="error when you register!"
+          setTimeout(() => {
+                this.toast = false;
+            }, 5000); 
         }
       } else {
         this.SignUpUser.rewritePass = "";
-        alert("Password is not same!");
+        this.toast = true
+        this.notification ="Password is not same!"
+        setTimeout(() => {
+                this.toast = false;
+            }, 5000); 
       }
     },
     ToggerActive() {
@@ -299,4 +324,15 @@ export default {
   background: linear-gradient(to right, rgb(52, 52, 236), rgb(21, 239, 21));
   color: white;
 }
+
+/* css toast */
+  .toast{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    z-index: 11;
+  }
+  .toastshow{
+    display: block;
+  }
 </style>

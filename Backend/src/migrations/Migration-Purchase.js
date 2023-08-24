@@ -5,14 +5,18 @@ module.exports = {
     await queryInterface.createTable('Purchases', {
       mauser: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      maProduct: {
+      maProduct:{
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
+      },
+      sizeId: {
+        allowNull: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER
       },
       soLuongMua: {
         type: Sequelize.INTEGER

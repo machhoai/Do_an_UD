@@ -1,5 +1,5 @@
 <template>
-    <div class="containers">
+    <div class="containers col-12">
         <h4>Đổi mật khẩu</h4>
         <div class="password">
         <div class="password-input-container">
@@ -34,7 +34,7 @@
             <div class="password-error-message" v-if="isConfirmNewPasswordEntered && !doPasswordsMatch">* Không trùng khớp</div>
         </div>
     </div>
-        <button class="SubmitBtn" @click="submitForm" :disabled="isButtonDisabled">Xác nhận</button> 
+    <button class="SubmitBtn col-4" @click="ChangePass" :disabled="isButtonDisabled">Xác nhận</button> 
     </div>
 </template>
 
@@ -44,7 +44,6 @@
     flex-direction: column;
     text-align: left;
     align-items: center;
-    width: 60%;
 }
 
 .container h4
@@ -98,13 +97,13 @@
     background: rgb(105, 1, 1);
     border-radius: 5px;
     height: 37px;
-    width: 20%;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 </style>
 
 <script>
+import axios from "axios";
 export default {
     data() {
   return {
@@ -116,10 +115,32 @@ export default {
     isOldPasswordEntered: false,
     isNewPasswordEntered: false,
     isConfirmNewPasswordEntered: false,
-    isButtonDisabled: true
+    isButtonDisabled: true,
+    Account: [],
   };
 },
+mounted() {
+    const session = sessionStorage.getItem("account");
+    console.log(">>> session:", session);
+    if (session) {
+      this.Account = JSON.parse(session);
+      console.log(">>> account:", this.Account.mauser);
+    }
+},
 methods: {
+    async ChangePass(){
+        const newpass = this.newPasswordInput;
+        const mauser = this.Account.mauser
+        const ChangePassword = await axios.post("http://localhost:3000/api/changepass",
+            {
+                newpass,mauser
+            }
+        );
+        console.log(">>> ChangePassword:", ChangePassword.data.EC);
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);  
+    },
     onOldPasswordInput() {
         this.isOldPasswordEntered = this.oldPasswordInput.length > 0;
     },

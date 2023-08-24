@@ -1,19 +1,68 @@
 <template>
-    <div class="container">
+    <div class="container col-12">
         <h4>Thông tin tài khoản</h4>
-        <div class="box name">Mạch Hoài</div>
-        <div class="box mail">machhoai1234@gmail.com</div>
-        <div class="box phone">0938571951</div>
-        <button class="changeBtn">Thay đổi</button>
+        <div class="box name col-sm-10 col-12">{{GetUsername}}</div>
+        <div class="box mail col-sm-10 col-12">{{GetEmail}}</div>
+        <div class="box phone col-sm-10 col-12">{{GetPhone}}</div>
     </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+    data() {
+        return {
+            inforuser:null,
+            Account: [],
+        }
+    },
+    mounted() {
+        const session = sessionStorage.getItem("account");
+        console.log(">>> session:", session);
+        if (session) {
+        this.Account = JSON.parse(session);
+        console.log(">>> account:", this.Account.mauser);
+        }
+        this.GetData()
+    },
+    computed:{
+        GetUsername(){
+            if(this.inforuser!==null){
+                return this.inforuser.username
+            }
+        },
+        GetEmail(){
+            if(this.inforuser!==null){
+                return this.inforuser.email
+            }
+        },
+        GetPhone(){
+            if(this.inforuser!==null){
+                return this.inforuser.phone
+            }
+        }
+    },
+    methods:{
+        async GetData(){
+            const mauser = this.Account.mauser
+            const InforUser = await axios.post(
+                "http://localhost:3000/api/getinforuser",
+                {
+                    mauser
+                }
+            );
+            console.log(">>>check InforUser: ", InforUser.data.DT)
+            this.inforuser = InforUser.data.DT;
+        }
+    }
+}
+</script>
 
 <style scoped>
 .container
 {
     flex-direction: column;
     text-align: left;
-    align-items: center;
 }
 
 .container h4
@@ -26,7 +75,6 @@
 .box
 {
     border: 1px solid black;
-    width: 80%;
     height: 45px;
     margin-bottom: 17px;
     padding: 14px;
@@ -35,13 +83,4 @@
     border-radius: 5px;
 }
 
-.changeBtn
-{
-    background: rgb(105, 1, 1);
-    border-radius: 5px;
-    height: 37px;
-    width: 20%;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 </style>

@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         through: 'Purchases', 
         foreignKey: 'mauser',
       })
+      Users.belongsToMany(models.Sizes, { 
+        through: 'Purchases', 
+        foreignKey: 'mauser',
+      })
     }
   }
   Users.init({

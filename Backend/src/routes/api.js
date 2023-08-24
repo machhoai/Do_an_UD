@@ -28,7 +28,16 @@ const initApiRouter = (app) => {
     router.post('/productfilter',ApiController.ProductFilter)
     router.post('/deleteproduct',ApiController.DeleteProduct)    
     router.post('/updateproduct',ApiController.UpdateProduct)   
-    router.post('/findproduct',ApiController.FindProductInDB) 
+    router.post('/findproduct',ApiController.FindProductInDB)
+    router.post('/addtobag',ApiController.AddToBag) 
+    router.post('/showbag',ApiController.ShowProductInBag) 
+    router.post('/removeproduct',ApiController.RemoveProduct)
+    router.post('/thanhtoan',ApiController.ThanhToan)
+    router.post('/savebin',ApiController.SaveBin)
+    router.post('/recyclebin',ApiController.RecycleBin)
+    router.post('/changepass',ApiController.ChangePass)
+    router.post('/getinforuser',ApiController.GetInforUser)
+    router.post('/getproductinbag',ApiController.GetProductInBag)
     return app.use('/api', router)
 }
 

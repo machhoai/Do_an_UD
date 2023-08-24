@@ -49,8 +49,9 @@ const AddProduct = ( async (req, res) => {
         const data = await LoginRegisterService.handleAddProduct(req.body , req.file.filename);
 
         return res.status(200).json({
-            message: 'hello',
-            data: data
+            EM: data.EM,
+            EC: data.EC,
+            DT: data.DT
         })
     } catch (error) {
         console.log(">>>Check error: ", error)
@@ -117,8 +118,101 @@ const FindProductInDB = async (req,res)=>{
         DT: data.DT
     })
 }
+// add product to bag
 
+const AddToBag = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.AddProductToBag(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
+
+//show product in bag
+const ShowProductInBag = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.ShowProductHaveInBag(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
+// remove product
+
+const RemoveProduct = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.RemoveProductInBag(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
+
+const ThanhToan  = async(req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.ThanhToanProduct(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
+// save vao Bin
+const SaveBin = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.SaveRecycleBin(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
+//RecycleBin
+
+const RecycleBin = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.RecycleBinData(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
+//change password
+const ChangePass = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.ChangePassword(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
+//get info
+const GetInforUser = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.InforUser(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
+//GetProductInBag
+const GetProductInBag = async (req,res)=>{
+    console.log(">>>Check req.body:", req.body)
+    const data = await LoginRegisterService.GetProductBag(req.body)
+    return res.status(200).json({
+        EM: data.EM,
+        EC: data.EC,
+        DT: data.DT
+    })
+}
 module.exports = {
     ApiHome, handleregister, handlelogin, AddProduct,Renderimage,ProductDetail,ProductFilter,DeleteProduct,UpdateProduct,
-    FindProductInDB
+    FindProductInDB,AddToBag,ShowProductInBag,RemoveProduct,ThanhToan,SaveBin,RecycleBin,ChangePass,GetInforUser,GetProductInBag
 }

@@ -32,6 +32,15 @@ module.exports = (sequelize, DataTypes) => {
         key: 'maProduct'
       }
     },
+    sizeId: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      references:{
+        model: 'Sizes',
+        key: 'sizeId'
+      }
+    },
     soLuongMua: DataTypes.INTEGER,
     thanhTien: DataTypes.STRING,
   }, {

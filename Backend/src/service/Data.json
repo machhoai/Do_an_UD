@@ -1,0 +1,14 @@
+[
+  {
+    "Product": {
+      "maProduct": "TS1a22",
+      "productName": "Candles Hidden Tshirt",
+      "soLuong": 100,
+      "price": "390.000",
+      "productInfo": "",
+      "sale": 10,
+      "nameImage": "http://localhost:3000/ImageUpload/1692799463099-ao22.jpeg",
+      "type": "ao"
+    }
+  }
+]

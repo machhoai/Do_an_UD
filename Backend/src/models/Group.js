@@ -14,11 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         {
           foreignKey: 'groupId',
         });
-      Groups.belongsToMany(models.Roles, { 
-        through: 'GroupRoles' ,
-        foreignKey: 'groupId'
-      
-      });
     }
   }
   Groups.init({

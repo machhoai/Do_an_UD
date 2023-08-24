@@ -11,8 +11,9 @@
                 <li>Longsleeves</li>
             </ul>
         </nav>
-        <div class="products">
-            <div class="aproduct product" v-for="(item,index) of product" :key="index" @click="GoProductPage(item)">
+        <div class="products" v-for="(prod, indexProd) in product" :key="indexProd" v-show="indexproducts === indexProd">
+            <p>Page:{{indexProd +1}}</p>
+            <div class="aproduct product" v-for="(item,index) of prod" :key="index" @click="GoProductPage(item)">
                 <div class="product-img">
                     <img :src="item.nameImage" alt="">
                 </div>
@@ -22,14 +23,19 @@
                     </div>
                     <h3 id="product-name">{{item.productName}}</h3>
                     <div class="box-price" v-if="item.sale !== 0">
-                        <span id="curr-price">{{priceSale[index]}}<u>VND</u></span>
-                        <span id="old-price"><s>{{item.price}}<u>VND</u></s></span>
+                        <span id="curr-price">{{priceSale[indexProd][index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}} VND</span>
+                        <span id="old-price"><s>{{item.price}} VND</s></span>
                     </div>
                     <div class="box-price" v-else>
-                        <span id="old-price" style="font-weight:600">{{item.price}}<u>VND</u></span>
+                        <span id="old-price" style="font-weight:600">{{item.price}} VND</span>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="Page col-12" >
+            <button v-for="(item,index) of priceSale" :key="index" 
+            @click="ChangePage(index)" :class="{ 'activebutton': indexpage ===index}"
+            >{{index + 1}}</button>
         </div>
     </div>
 </template>
@@ -41,6 +47,10 @@ export default {
         return {
             product:null,
             priceSale: null,
+            startIndex:0,
+            endIndex: 15,
+            indexpage:0,
+            indexproducts:0,
         }
     },
     methods:{
@@ -52,17 +62,31 @@ export default {
             const Product = await axios.post("http://localhost:3000/api/productfilter",
                 {Type}
             );           
-            this.product = Product.data.DT
+            // this.product = Product.data.DT
             console.log(">>>show product: ",Product.data.DT )
             const list =[]
-            for(var i =0; i < this.product.length; i ++)
+            for(var i =0; i < Product.data.DT.length; i ++)
             {
-                const price = parseInt(this.product[i].price.replace(/\./g, ""));
-                list[i] = price - (price*(this.product[i].sale)/100)
+                const price = parseInt(Product.data.DT[i].price.replace(/\./g, ""));
+                list[i] = price - (price*(Product.data.DT[i].sale)/100)
             }
-            this.priceSale =list
+
+            //tao cac trang nho
+            const listProduct =[]
+            const listSale = []
+            for(var i=0 ;i < (Product.data.DT.length /15);i++)
+            {
+                listProduct[i] = Product.data.DT.slice(this.startIndex + 15*(i) , this.endIndex + 15*(i));
+                listSale[i] = list.slice(this.startIndex + 15*(i) , this.endIndex + 15*(i));
+            }
+            this.product = listProduct
+            this.priceSale =listSale
             console.log(">>>show price sale: ",this.priceSale )
         },
+        ChangePage(index){
+            this.indexpage = index
+            this.indexproducts = index
+        }
         
     },
     mounted(){
@@ -240,5 +264,17 @@ h1
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 15px;
     }
+}
+.Page{
+    display: flex;
+    flex-direction: row;
+}
+.Page button{
+    margin: 0 0.5px;
+}
+
+.activebutton{
+    background: black;
+    color: white;
 }
 </style>

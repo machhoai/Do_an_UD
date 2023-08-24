@@ -1,4 +1,15 @@
 <template>
+  <!-- Thông báo ra màn hình -->
+  <div class="toast align-items-center" :class="{'toastshow':toast}" ref="mytoast" v-if="toast" role="alert" aria-live="assertive" aria-atomic="true" >
+    <div class="d-flex">
+      <div class="toast-body">
+        {{notification}}
+      </div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+
+
   <div class="Background col-10">
     <div class="col-10 col-lg-8" id="Container">
       <h1>login</h1>
@@ -71,6 +82,8 @@ export default {
       password: "",
       isActiveUser: false,
       isActivePass: false,
+      toast: false,
+      notification:''
     };
   },
   methods: {
@@ -110,16 +123,21 @@ export default {
         const data = {
           isAuthenticater: true,
           token: 'fake token',
-          isAdmin: true
+          isAdmin: true,
+          mauser: checkmessage.data.DT.mauser
         }
         sessionStorage.setItem('account', JSON.stringify(data));
         this.$router.push({path:"/"})
         setTimeout(() => {
-        window.location.reload();
+          window.location.reload();
       }, 100);     
       }
       else if (checkmessage.data.EC !== 0) {
-        alert("your email or password is not correct!");
+        this.toast = true
+        this.notification ="your email or password is not correct!"
+        setTimeout(() => {
+                this.toast = false;
+            }, 5000); 
       }
     },
 
@@ -259,4 +277,14 @@ export default {
   font-weight: 600;
   font-size: 18px;
 }
+/* css toast */
+  .toast{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    z-index: 11;
+  }
+  .toastshow{
+    display: block;
+  }
 </style>
